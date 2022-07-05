@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+.index{
+    margin-top: 20vh;
+}
+.pagelog{
+    width: 100%;
+}
+.footer{
+    width: 100%;
+}
+.brandtitle{
+    font-family: 'Comfortaa', cursive;
+    font-size: 70px;
+    font-weight: bolder;
+    text-align: center;
+}
+.btns{
+    height: 55px;
+    width: 120px;
+    font-size: 50px;
+}
+.inplog{
+    width: 80%;
+    height: 50px;
+    border: .01;
+    border-radius: 15px;
+}
+.dashmenu{
+    height:30vh;   
+}
