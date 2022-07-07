@@ -9,7 +9,7 @@ import LoginButton from '../../Components/LoginPage/LoginButton'
 function LoginPage() {
     const[userName,setUsername] = useState();
     const[passWord,setPassword] = useState();
- 
+
 
     return(
         <div className="container-fluid index">
@@ -57,7 +57,7 @@ function LoginPage() {
               />
               <br />
               <br />
-              <LoginButton username = {userName} password = {passWord} clearUserBox = {setUsername} clearPassbox = {setPassword}></LoginButton>
+              <LoginButton username = {userName} password = {passWord} clearUserBox = {setUsername} clearPassbox = {setPassword} ></LoginButton>
               <br />
               <a className="text-dark" href="signup.html">
                 Dont have an account? Sign up here!
