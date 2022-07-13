@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import adminLogoImage from "../../assets/Images/adminsign.svg"
-import "../../assets/Styles/LoginStyle.css"
+import "../../assets/Styles/LoginSignUpStyles/LoginStyle.css"
 import "../../assets/bootstrap.css"
 import Form from 'react-bootstrap/Form'
 import {useRef,forwardRef,useEffect} from 'react';
