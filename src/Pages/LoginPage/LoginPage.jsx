@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
 import adminLogoImage from "../../assets/Images/adminsign.svg"
-import "../../assets/Styles/LoginSignUpStyles/LoginStyle.css"
-import "../../assets/bootstrap.css"
+import "../../assets/Styles/LoginStyle/LoginStyle.css"
+import "../../assets/Styles/bootstrap.css"
 import Form from 'react-bootstrap/Form'
 import {useRef,forwardRef,useEffect} from 'react';
-import LoginButton from '../../Components/LoginPage/LoginButton'
 
 function LoginPage() {
-    const[userName,setUsername] = useState();
-    const[passWord,setPassword] = useState();
-
+    
+    const emailRef = useRef();
+    const passwordRef = useRef();
 
     return(
         <div className="container-fluid index">
@@ -31,15 +30,14 @@ function LoginPage() {
           <div style={{ textAlign: "center" }}>
             <form method="POST">
               <input 
-                type="text"
+                type="email"
                 className="inplog"
-                placeholder="Username"
+                placeholder="Email"
                 value = {userName  || ''}
                 name="username"
                 required=""
-                onChange={(e)=>{
-                  setUsername(e.target.value)            
-                }}
+                ref={emailRef}
+    
               />
               
               <br />
@@ -51,13 +49,22 @@ function LoginPage() {
                 value = {passWord || ''}
                 name="password"
                 required=""
-                onChange={(e)=>{
-                  setPassword(e.target.value)
-                }}
+                ref={passwordRef}
               />
               <br />
               <br />
-              <LoginButton username = {userName} password = {passWord} clearUserBox = {setUsername} clearPassbox = {setPassword} ></LoginButton>
+              <button
+                    className="inplog btn btn-primary"
+                    style={{ borderRadius: 15 }}
+                    onClick = {(e)=>
+                        {
+                            e.preventDefault();
+
+                        }
+                    }
+              >
+                    Sign In
+              </button>
               <br />
               <a className="text-dark" href="signup.html">
                 Dont have an account? Sign up here!
