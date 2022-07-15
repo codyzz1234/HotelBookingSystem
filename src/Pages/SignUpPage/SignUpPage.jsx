@@ -7,19 +7,22 @@ import { useRef } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 
 
+
 export const SignUpPage = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
+  const{signup} = useAuth();
 
 
-  const createUser = ()=>{
-    console.log("Signing utype")
-    console.log("Email is" + emailRef.current.value);
-    console.log("password is " + passwordRef.current.value);
-    emailRef = emailRef.current.value
+  //Submit form Data
+  function handleSubmit(){
+    if(passwordRef.current.value !== passwordConfirmRef.current.value){
+      return;
+    }
+    return;
+    signup(emailRef.current.value,passwordRef.current.value)
   }
-
  
 
   return (
@@ -82,7 +85,7 @@ export const SignUpPage = () => {
             className="btn btn-success signUpButton"
             onClick={(e)=>{
               e.preventDefault();
-              createUser();
+              handleSubmit();
             }}
           >
             Sign Up
