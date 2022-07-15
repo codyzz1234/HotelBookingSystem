@@ -16,6 +16,7 @@ export const SignUpPage = () => {
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
   const{signup} = useAuth();
+  
 
 
   //Submit form Data
