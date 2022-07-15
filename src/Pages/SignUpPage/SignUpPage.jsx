@@ -1,12 +1,15 @@
 /*Required components*/
 import React from 'react'
-import "../../assets/Styles/SignUpPageStyle/SignUpStyle.css";
-/*images*/
-import SignUpLogo from "../../assets/Images/SignUpPageImages/SignUpImage.png"
 import { useRef } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
-
-
+import { ToastContainer, toast } from 'react-toastify';
+/*Style Sheets*/
+import 'react-toastify/dist/ReactToastify.css';
+import "../../assets/Styles/SignUpPageStyle/SignUpStyle.css"
+/*images*/
+import SignUpLogo from "../../assets/Images/SignUpPageImages/SignUpImage.png"
+import 'react-toastify/dist/ReactToastify.css';
+import "../../assets/Styles/SignUpPageStyle/SignUpStyle.css"
 
 export const SignUpPage = () => {
   const emailRef = useRef();
@@ -18,10 +21,23 @@ export const SignUpPage = () => {
   //Submit form Data
   function handleSubmit(){
     if(passwordRef.current.value !== passwordConfirmRef.current.value){
+      passWordDoesNotMatchToast();    
       return;
     }
     return;
     signup(emailRef.current.value,passwordRef.current.value)
+  }
+
+  const passWordDoesNotMatchToast = ()=>{
+    toast.error('Error Passwords do not match', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
   }
  
 
@@ -30,12 +46,8 @@ export const SignUpPage = () => {
     <meta charSet="UTF-8" />
     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="../src/assets/Styles/SignUpPageStyle/SignUpStyle.css"
-    />
-    <link rel="stylesheet" href="../../" />
-    <link rel="stylesheet" href="../src/assets/Styles/bootstrap.css" />
+
+
     <title>Document</title>
     <div className="flex-container">
       <div className="form-container"> 
@@ -90,10 +102,12 @@ export const SignUpPage = () => {
           >
             Sign Up
           </button>
+             <ToastContainer></ToastContainer>
         </form>
       </div>
     </div>
   </>
+ 
 
   )
 }
