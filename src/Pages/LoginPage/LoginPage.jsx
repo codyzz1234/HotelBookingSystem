@@ -4,11 +4,19 @@ import "../../assets/Styles/LoginStyle/LoginStyle.css"
 import "../../assets/Styles/bootstrap.css"
 import Form from 'react-bootstrap/Form'
 import {useRef,forwardRef,useEffect} from 'react';
+import{Link, Navigate, useNavigate} from "react-router-dom";
 
 function LoginPage() {
     
     const emailRef = useRef();
     const passwordRef = useRef();
+    
+    const navigation = useNavigate();
+
+    const goToSignUpScreen = () =>{
+      let path = 'signup';
+      navigation(path);
+    }
 
     return(
         <div className="container-fluid index">
@@ -33,7 +41,6 @@ function LoginPage() {
                 type="email"
                 className="inplog"
                 placeholder="Email"
-                value = {userName  || ''}
                 name="username"
                 required=""
                 ref={emailRef}
@@ -46,7 +53,6 @@ function LoginPage() {
                 type="password"
                 className="inplog"
                 placeholder="Password"
-                value = {passWord || ''}
                 name="password"
                 required=""
                 ref={passwordRef}
@@ -66,7 +72,12 @@ function LoginPage() {
                     Sign In
               </button>
               <br />
-              <a className="text-dark" href="signup.html">
+              <a className="text-dark" href="signup.html" onClick={(e)=>{
+                e.preventDefault();
+                console.log("Clicked");
+                goToSignUpScreen();
+                
+              }}>
                 Dont have an account? Sign up here!
               </a>
             </form>

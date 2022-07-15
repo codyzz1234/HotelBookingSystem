@@ -1,8 +1,9 @@
 import React from 'react'
-import "../../assets/Styles/SignUpPageStyle/SignUpStyle"
-export default function SignUpPage() {
+import "../../assets/Styles/SignUpPageStyle/SignUpStyle.css";
+import SignUpLogo from "../../assets/Images/SignUpPageImages/SignUpImage.png"
+export const SignUpPage = () => {
   return (
-  <>
+    <>
   <meta charSet="UTF-8" />
   <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,10 +16,11 @@ export default function SignUpPage() {
   <div className="flex-container">
     <div className="form-container">
       <img
-        src="../src//assets//Images/SignUpPageImages/SignUpImage.png"
+        src = {SignUpLogo}
         alt=""
         className="img-fluid"
       />
+
       <form>
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">Email address</label>
@@ -49,5 +51,6 @@ export default function SignUpPage() {
     </div>
   </div>
   </>
-)
+
+  )
 }
