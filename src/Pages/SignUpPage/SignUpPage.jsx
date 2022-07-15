@@ -4,10 +4,13 @@ import "../../assets/Styles/SignUpPageStyle/SignUpStyle.css";
 /*images*/
 import SignUpLogo from "../../assets/Images/SignUpPageImages/SignUpImage.png"
 import { useRef } from 'react';
+import { useAuth } from '../../contexts/AuthContext';
+
 
 export const SignUpPage = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
+  const passwordConfirmRef = useRef();
 
 
   const createUser = ()=>{
@@ -16,6 +19,8 @@ export const SignUpPage = () => {
     console.log("password is " + passwordRef.current.value);
     emailRef = emailRef.current.value
   }
+
+ 
 
   return (
   <>
@@ -62,15 +67,25 @@ export const SignUpPage = () => {
               ref = {passwordRef}
             />
           </div>
+          <div className="form-group">
+            <label htmlFor="exampleInputPassword1">Confirm Password</label>
+            <input
+              type="password"
+              className="form-control"
+              id="exampleInputPassword1"
+              placeholder="Password"
+              ref = {passwordConfirmRef}
+            />
+          </div>
           <button 
             type="submit"
-            className="btn btn-primary signUpButton"
+            className="btn btn-success signUpButton"
             onClick={(e)=>{
               e.preventDefault();
               createUser();
             }}
           >
-            Submit
+            Sign Up
           </button>
         </form>
       </div>
