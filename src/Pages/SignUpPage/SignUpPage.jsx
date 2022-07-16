@@ -11,6 +11,9 @@ import "../../assets/Styles/SignUpPageStyle/SignUpStyle.css"
 import SignUpLogo from "../../assets/Images/SignUpPageImages/SignUpImage.png"
 import 'react-toastify/dist/ReactToastify.css';
 import "../../assets/Styles/SignUpPageStyle/SignUpStyle.css"
+import { Alert } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+
 
 export const SignUpPage = () => {
   const emailRef = useRef();
@@ -19,29 +22,37 @@ export const SignUpPage = () => {
   const{signup} = useAuth();
 
   const[doesMatch,setMatch] = useState("yes");
-  
+
+  const[loading,setLoading] = useState('false');
+
+  const[error,setError] = useState('');
+
+
   //Submit form Data
-  function handleSubmit(){
-    if(passwordRef.current.value !== passwordConfirmRef.current.value){
-      passWordDoesNotMatchToast();    
+  async function handleSubmit(){
+    if((emailRef.current.value).length <= 0){
+      setError("Invalid Email Address");
+      return
+    }
+    else if(passwordRef.current.value !== passwordConfirmRef.current.value){
+      setError("Passwords do not match");    
       return;
     }
-    return;
-    signup(emailRef.current.value,passwordRef.current.value)
+    else{
+      try{
+        setLoading(true)
+        await signup(emailRef.current.value,passwordRef.current.value)
+      }
+      catch{
+        setError("Failed To Make an Account");    
+      }
+    }
+    setLoading(false);
   }
 
-  const passWordDoesNotMatchToast = ()=>{
-    toast.error('Error Passwords do not match', {
-      position: "bottom-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      });
-  }
+  
 
+  // check if password matches on change.
   const checkMatch = () =>{
     if(passwordConfirmRef.current.value !== passwordRef.current.value){
       console.log("Does not match")
@@ -59,7 +70,6 @@ export const SignUpPage = () => {
     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-
     <title>Document</title>
     <div className="flex-container">
       <div className="form-container"> 
@@ -70,6 +80,12 @@ export const SignUpPage = () => {
         />
 
         <form>
+          {error.length > 0 ? 
+            <Alert variant="danger">
+              {error}
+            </Alert>
+            :""
+          }
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">Email address</label>
             <input
