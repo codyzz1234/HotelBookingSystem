@@ -3,6 +3,7 @@ import React from 'react'
 import { useRef } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
+import { useState} from 'react';
 /*Style Sheets*/
 import 'react-toastify/dist/ReactToastify.css';
 import "../../assets/Styles/SignUpPageStyle/SignUpStyle.css"
@@ -16,9 +17,9 @@ export const SignUpPage = () => {
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
   const{signup} = useAuth();
+
+  const[doesMatch,setMatch] = useState("yes");
   
-
-
   //Submit form Data
   function handleSubmit(){
     if(passwordRef.current.value !== passwordConfirmRef.current.value){
@@ -31,7 +32,7 @@ export const SignUpPage = () => {
 
   const passWordDoesNotMatchToast = ()=>{
     toast.error('Error Passwords do not match', {
-      position: "top-center",
+      position: "bottom-center",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -40,7 +41,17 @@ export const SignUpPage = () => {
       progress: undefined,
       });
   }
- 
+
+  const checkMatch = () =>{
+    if(passwordConfirmRef.current.value !== passwordRef.current.value){
+      console.log("Does not match")
+      setMatch("no");
+    }
+    else{
+      console.log(" match")
+      setMatch("yes");
+    }
+  }
 
   return (
   <>
@@ -90,8 +101,17 @@ export const SignUpPage = () => {
               className="form-control"
               id="exampleInputPassword1"
               placeholder="Password"
+              onChange={(e)=>{
+                e.preventDefault();   
+                checkMatch();
+              }}
               ref = {passwordConfirmRef}
             />
+            <h6 
+              style = {{color:doesMatch !== "yes" ? "red":""}}
+            >
+              {doesMatch === "yes" ? "":"passwords do not match"}
+            </h6>
           </div>
           <button 
             type="submit"
