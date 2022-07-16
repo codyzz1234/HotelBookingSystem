@@ -21,7 +21,14 @@ const HomePage = () => {
       }
   }
 
-
+  return(
+    <div className="button"
+          onClick={(e)=>{
+            handleLogout();
+          }}>
+      Logout
+    </div>
+  )
 
 
 }
