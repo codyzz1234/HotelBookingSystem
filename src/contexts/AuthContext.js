@@ -1,62 +1,48 @@
-import React, { useContext, useState, useEffect } from "react"
-import { auth } from "../firebase"
+import React, { createContext, useContext, useState, useEffect } from 'react'
+import {auth,methods} from '../firebase'
 
-const AuthContext = React.createContext()
+const AuthContext = createContext()
 
 export function useAuth() {
-  return useContext(AuthContext)
+    return useContext(AuthContext)
 }
 
 export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState()
-  const [loading, setLoading] = useState(true)
 
-  function signup(email, password) {
-    return auth.createUserWithEmailAndPassword(email, password)
-  }
+    const [currentUser, setCurrentUser] = useState()
+    const [loading, setLoading] = useState(true)
 
-  function login(email, password) {
-    return auth.signInWithEmailAndPassword(email, password)
-  }
+    function signup(email, password) {
+        return methods.createUserWithEmailAndPassword(auth, email, password)
+    }
 
-  function logout() {
-    return auth.signOut()
-  }
+    function login(email, password) {
+        return methods.signInWithEmailAndPassword(auth, email, password)
+    }
 
-  function resetPassword(email) {
-    return auth.sendPasswordResetEmail(email)
-  }
+    function logout() {
+        return methods.signOut(auth)
+    }
 
-  function updateEmail(email) {
-    return currentUser.updateEmail(email)
-  }
+    useEffect(() => {
+        const unsubscribe = methods.onAuthStateChanged(auth, (user) => {
+            setCurrentUser(user)
+            setLoading(false)
+        })
 
-  function updatePassword(password) {
-    return currentUser.updatePassword(password)
-  }
+        return unsubscribe
+    }, [])
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
-      setCurrentUser(user)
-      setLoading(false)
-    })
+    const value = {
+        currentUser,
+        signup,
+        login,
+        logout
+    }
 
-    return unsubscribe
-  }, [])
-
-  const value = {
-    currentUser,
-    login,
-    signup,
-    logout,
-    resetPassword,
-    updateEmail,
-    updatePassword
-  }
-
-  return (
-    <AuthContext.Provider value={value}>
-      {!loading && children}
-    </AuthContext.Provider>
-  )
+    return (
+        <AuthContext.Provider value={value}>
+            {!loading && children}
+        </AuthContext.Provider>
+    )
 }

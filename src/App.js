@@ -2,19 +2,25 @@ import LoginPage from '../src/Pages/LoginPage/LoginPage'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { SignUpPage } from './Pages/SignUpPage/SignUpPage';
-import{Route,Routes} from "react-router-dom";
-import { AuthProvider } from './contexts/AuthContext';
+import{BrowserRouter, Route,Routes} from "react-router-dom";
+import ProtectedRoutes from './Components/ProtectedRoutes';
 
 function App() {
   return(
-    <AuthProvider>
-      <div className='App'>
+     <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<LoginPage></LoginPage>}></Route>
-          <Route exact path="/signup" element = {<SignUpPage></SignUpPage>}></Route>
+        
+          <Route element = {<ProtectedRoutes/>}>
+              <Route element = {<LoginPage/>} exact path = "/LoginPage"></Route>
+          </Route>
+          <Route element = {<SignUpPage/>} exact path = "SignUpPage"></Route>
+
+        
+          {/* <Route exact path="/LoginPage" element={<LoginPage/>}></Route>
+          <Route exact path="/SignUpPage" element = {<SignUpPage></SignUpPage>}></Route> */}
         </Routes>
-      </div>
-    </AuthProvider>
+     </BrowserRouter>
+
    
   )
 }

@@ -14,7 +14,7 @@ function LoginPage() {
     const navigation = useNavigate();
 
     const goToSignUpScreen = () =>{
-      let path = 'signup';
+      let path = 'SignUpPage';
       navigation(path);
     }
 

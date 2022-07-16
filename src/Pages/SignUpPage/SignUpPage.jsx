@@ -30,11 +30,7 @@ export const SignUpPage = () => {
 
   //Submit form Data
   async function handleSubmit(){
-    if((emailRef.current.value).length <= 0){
-      setError("Invalid Email Address");
-      return
-    }
-    else if(passwordRef.current.value !== passwordConfirmRef.current.value){
+    if(passwordRef.current.value !== passwordConfirmRef.current.value){
       setError("Passwords do not match");    
       return;
     }
@@ -86,6 +82,7 @@ export const SignUpPage = () => {
             </Alert>
             :""
           }
+
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">Email address</label>
             <input
