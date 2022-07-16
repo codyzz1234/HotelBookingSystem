@@ -25,3 +25,7 @@
     margin-left: 15%;
     width:70%;
 }
+/*Toast Login*/
+.LoginToast{
+    bottom: 20%;
+}

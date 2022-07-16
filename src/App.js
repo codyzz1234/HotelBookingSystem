@@ -4,24 +4,23 @@ import ReactDOM from 'react-dom';
 import { SignUpPage } from './Pages/SignUpPage/SignUpPage';
 import{BrowserRouter, Route,Routes} from "react-router-dom";
 import ProtectedRoutes from './Components/ProtectedRoutes';
+import HomePage from './Pages/HomePage/HomePage';
 
 function App() {
   return(
      <BrowserRouter>
         <Routes>
-        
+          <Route Path></Route>
+          {/* public routes*/}
+            <Route element = {<LoginPage/>} path = "/"></Route>
+            <Route element = {<SignUpPage/>} path = "/SignUpPage"></Route>
+      
+          {/* {protected routes} */}
           <Route element = {<ProtectedRoutes/>}>
-              <Route element = {<LoginPage/>} exact path = "/LoginPage"></Route>
+              <Route element = {<HomePage/>} path = "/HomePage"></Route>
           </Route>
-          <Route element = {<SignUpPage/>} exact path = "SignUpPage"></Route>
-
-        
-          {/* <Route exact path="/LoginPage" element={<LoginPage/>}></Route>
-          <Route exact path="/SignUpPage" element = {<SignUpPage></SignUpPage>}></Route> */}
         </Routes>
      </BrowserRouter>
-
-   
   )
 }
 export default App;

@@ -4,49 +4,76 @@ import { useRef } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
 import { useState} from 'react';
+import {Link,useNavigate} from "react-router-dom"
+import {useEffect } from 'react';
+import { Alert } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 /*Style Sheets*/
+import 'react-toastify/dist/ReactToastify.css';
+import "../../assets/Styles/SignUpPageStyle/SignUpStyle.css"
 import 'react-toastify/dist/ReactToastify.css';
 import "../../assets/Styles/SignUpPageStyle/SignUpStyle.css"
 /*images*/
 import SignUpLogo from "../../assets/Images/SignUpPageImages/SignUpImage.png"
-import 'react-toastify/dist/ReactToastify.css';
-import "../../assets/Styles/SignUpPageStyle/SignUpStyle.css"
-import { Alert } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
+
+
 
 
 export const SignUpPage = () => {
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const passwordConfirmRef = useRef();
-  const{signup} = useAuth();
+  const emailRef = useRef()
+    const passwordRef = useRef()
+    const passwordConfirmRef = useRef()
+    const { signup, currentUser } = useAuth()
+    const navigate = useNavigate()
+    const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
+    const[doesMatch,setMatch] = useState("yes");
+    const[disableButton,setDisableButton] = useState(false);
 
-  const[doesMatch,setMatch] = useState("yes");
+    // useEffect(() => {
+    //     if(currentUser) {
+    //         navigate('/')
+    //     }
+    // }, [])
 
-  const[loading,setLoading] = useState('false');
+    /*Sign in New User*/
+    async function handleSubmit(e) {
+        e.preventDefault();
+        if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+            return setError("Passwords do not match")
+        }
+        try {
+            setDisableButton(true);
+            setError("")
+            setLoading(true)
+            await signup(emailRef.current.value, passwordRef.current.value)
+            signUpToast();
+            setTimeout(() => {
+              navigate("/")
+            }, 2000);
 
-  const[error,setError] = useState('');
-
-
-  //Submit form Data
-  async function handleSubmit(){
-    if(passwordRef.current.value !== passwordConfirmRef.current.value){
-      setError("Passwords do not match");    
-      return;
+        } catch(AuthError) {
+            setError(AuthError.code)
+            setDisableButton(false);
+            // setError(e)
+        }
+        setLoading(false)
     }
-    else{
-      try{
-        setLoading(true)
-        await signup(emailRef.current.value,passwordRef.current.value)
-      }
-      catch{
-        setError("Failed To Make an Account");    
-      }
-    }
-    setLoading(false);
-  }
 
-  
+    
+    /*Generate Sign up toast*/
+    const signUpToast = ()=>{
+      toast.success('User Created', {
+        position: "bottom-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        });
+    }
+
 
   // check if password matches on change.
   const checkMatch = () =>{
@@ -55,13 +82,13 @@ export const SignUpPage = () => {
       setMatch("no");
     }
     else{
-      console.log(" match")
       setMatch("yes");
     }
   }
 
   return (
   <>
+    <ToastContainer className="LoginToast"></ToastContainer>
     <meta charSet="UTF-8" />
     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -74,15 +101,14 @@ export const SignUpPage = () => {
           alt=""
           className="img-fluid"
         />
-
-        <form>
-          {error.length > 0 ? 
+        {error.length > 0 ? 
             <Alert variant="danger">
               {error}
             </Alert>
             :""
-          }
+        }
 
+        <form>
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">Email address</label>
             <input
@@ -105,6 +131,11 @@ export const SignUpPage = () => {
               id="exampleInputPassword1"
               placeholder="Password"
               ref = {passwordRef}
+              onChange = {(e)=>{
+                e.preventDefault();   
+                checkMatch();
+              }}
+          
             />
           </div>
           <div className="form-group">
@@ -121,22 +152,23 @@ export const SignUpPage = () => {
               ref = {passwordConfirmRef}
             />
             <h6 
-              style = {{color:doesMatch !== "yes" ? "red":""}}
+              style = {{color:doesMatch === "no" ? "red":""}}
             >
               {doesMatch === "yes" ? "":"passwords do not match"}
             </h6>
           </div>
           <button 
+            disabled = {disableButton}
             type="submit"
             className="btn btn-success signUpButton"
             onClick={(e)=>{
               e.preventDefault();
-              handleSubmit();
+              setDisableButton(true);
+              handleSubmit(e);
             }}
           >
             Sign Up
           </button>
-             <ToastContainer></ToastContainer>
         </form>
       </div>
     </div>

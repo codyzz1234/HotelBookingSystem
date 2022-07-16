@@ -5,21 +5,71 @@ import "../../assets/Styles/bootstrap.css"
 import Form from 'react-bootstrap/Form'
 import {useRef,forwardRef,useEffect} from 'react';
 import{Link, Navigate, useNavigate} from "react-router-dom";
+import { useAuth } from '../../contexts/AuthContext'
+import { Alert } from 'react-bootstrap'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 function LoginPage() {
     
     const emailRef = useRef();
     const passwordRef = useRef();
-    
-    const navigation = useNavigate();
+    const {login,currentUser} = useAuth();
+    const navigate = useNavigate();
 
+    const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
+
+
+    useEffect(() => {
+      if(currentUser) {
+          navigate('/HomePage')
+      }
+    },[])
+
+    //*Login User *//
+    async function handleSubmit(e) {
+      console.log("Signing in");
+      e.preventDefault();
+      try {
+          setError("")
+          setLoading(true)
+          await login(emailRef.current.value, passwordRef.current.value)
+          signInToast();
+          setTimeout(() => {
+            navigate("/HomePage")
+          }, 2000);
+      } catch(error) {
+          console.log(error.code)
+          setError(error.code)
+      }
+      setLoading(false)
+  }
+
+  // Sign In Toast//
+  const signInToast = ()=>{
+    toast.success('Signing In', {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
+  }
+
+    // Go to sign up screen//
     const goToSignUpScreen = () =>{
-      let path = 'SignUpPage';
-      navigation(path);
+      let path = '/SignUpPage';
+      navigate(path);
     }
 
     return(
-        <div className="container-fluid index">
+  <div className="container-fluid index">
+      <ToastContainer className="signInToast"></ToastContainer>
   <div className="row">
     <div className="col-md-6">
       <img src={adminLogoImage} className="pagelog" />
@@ -31,6 +81,13 @@ function LoginPage() {
       <h1 className="brandtitle" style={{ fontSize: 50 }}>
         <b>Welcome Back!</b>
       </h1>
+      {
+      error.length > 0 ? 
+            <Alert variant="danger">
+              {error}
+            </Alert>
+            :""
+      }
       <br />
       <div className="row">
         <div className="col-md-3" />
@@ -65,7 +122,7 @@ function LoginPage() {
                     onClick = {(e)=>
                         {
                             e.preventDefault();
-
+                            handleSubmit(e);
                         }
                     }
               >
@@ -74,9 +131,7 @@ function LoginPage() {
               <br />
               <a className="text-dark" href="signup.html" onClick={(e)=>{
                 e.preventDefault();
-                console.log("Clicked");
                 goToSignUpScreen();
-                
               }}>
                 Dont have an account? Sign up here!
               </a>

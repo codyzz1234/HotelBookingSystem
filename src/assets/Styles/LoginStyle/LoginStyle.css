@@ -28,3 +28,7 @@
 .dashmenu{
     height:30vh;   
 }
+
+.signInToast{
+    top: 50% !important;
+}
