@@ -21,17 +21,9 @@ const HomePage = () => {
       }
   }
 
-  return (
-    <div>This is the homepage
-      <button onClick={(e)=>{
-        e.preventDefault();
-        handleLogout();
-      }} >
-        Log out user
-      </button>
-    </div>
-    
-  )
+
+
+
 }
 
 export default HomePage
