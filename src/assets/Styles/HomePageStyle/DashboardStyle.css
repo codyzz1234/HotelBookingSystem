@@ -1,0 +1,78 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+body{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+/* Grid container when no sidebar present*/
+.grid-container-no-sidebar{
+    padding: 0;
+    margin:0;
+    min-height:100vh;
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    grid-template-rows: 
+                        1fr
+                        9fr;
+    grid-template-areas: 
+                        "nav nav"
+                        "content content";
+    justify-content:space-between;
+    align-items:center;
+    border: 5px solid orange;  
+    gap:1rem; 
+    
+}
+
+/*Nav Bar*/
+.navbar{
+    grid-area:nav;
+    height:100%;
+    display:flex;
+    border: solid 3px green; 
+}
+
+/*Content*/
+.content{
+    display:flex;
+    flex-direction: row;
+    grid-area:content;
+    height: 100%;
+    align-self:flex-start;
+    border: solid 5px darkblue;
+    justify-content:space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+/*flex row*/
+.flex-row{
+    border:solid 5px cyan;
+    display:flex;
+    flex-direction: row;
+    min-width: 100%;
+    min-height: 50%;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap:wrap;
+}
+
+
+
+.flex-item{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    border: solid 5px red;
+    min-width: 30%;
+    
+}
