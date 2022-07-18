@@ -39,7 +39,8 @@ const HomePage = () => {
       <div className="Nav-Bar-Container">
         <DashNav></DashNav>
       </div>
-      <div className="content">
+
+      <div className="Content-Container">
         <h1> Content</h1>
       </div>
     </div>
