@@ -44,7 +44,6 @@ function LoginPage() {
             navigate("/HomePage")
           }, 2000);
       } catch(error) {
-          console.log(error.code)
           setError(error.code)
       }
       setLoading(false)
@@ -52,7 +51,9 @@ function LoginPage() {
 
   // Sign In Toast//
   const signInToast = ()=>{
+    const customId = "custom-id-yes";
     toast.success('Signing In', {
+      toastId: customId,
       position: "top-right",
       autoClose: 2000,
       hideProgressBar: false,

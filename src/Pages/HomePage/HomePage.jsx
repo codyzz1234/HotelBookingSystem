@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRef } from 'react'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Route, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 //StylSheets
 import "../../assets//Styles//HomePageStyle//DashboardStyle.css"
@@ -12,6 +12,8 @@ import NavBar from '../../Components/Re-Usable/NavBar'
 //*Images*/
 import ReserveImage from "../../assets/Images/HomePageImages//ReserveImage.jpg"
 import CheckOutImage from "../../assets/Images/HomePageImages//CheckOutIcon.jpg"
+import ProtectedRoutes from '../../Components/ProtectedRoutes'
+import ReservationPage from '../ReservationPage/ReservationPage'
 const HomePage = () => {
   const [error, setError] = useState()
   const navigate = useNavigate()
@@ -68,7 +70,9 @@ const HomePage = () => {
         </div>
       </div>
     </div>
+
   </div>
+
   )
 }
 

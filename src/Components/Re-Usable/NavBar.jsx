@@ -24,11 +24,14 @@ const NavBar = () => {
       }
   }
 
+  const goToReservePage = ()=>{
+     navigate('Reservation');
+  }
+
 
   return (
     
-    <div className="Nav-Bar-Container">
-                                          
+    <div className="Nav-Bar-Container">                                
     <div className="nav-bar">
       <ul className="nav-items">
         <li className="nav-item Home">
@@ -39,7 +42,12 @@ const NavBar = () => {
           </a>
         </li>
         <li className="nav-item Reserve">
-          <a href = "#0" className="NavLink">
+          <a href = "#0" className="NavLink"
+              onClick={(e)=>{
+                e.preventDefault();
+                goToReservePage();
+              }
+              }>
             <i className="fa-solid fa-book fa-2xl" />
             Reserve
           </a>
