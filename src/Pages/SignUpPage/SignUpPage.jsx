@@ -62,7 +62,10 @@ export const SignUpPage = () => {
     
     /*Generate Sign up toast*/
     const signUpToast = ()=>{
+      const customId = "custom-id-yes";
+
       toast.success('User Created', {
+        toastId: customId,
         position: "bottom-center",
         autoClose: 2000,
         hideProgressBar: false,
@@ -153,6 +156,7 @@ export const SignUpPage = () => {
             />
             <h6 
               style = {{color:doesMatch === "no" ? "red":""}}
+              className = "DoNotMatch"
             >
               {doesMatch === "yes" ? "":"passwords do not match"}
             </h6>

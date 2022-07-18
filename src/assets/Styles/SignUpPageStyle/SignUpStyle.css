@@ -1,3 +1,6 @@
+.SignUpPage{
+    font-size: 1.5rem;
+}
 
 .SignUpPage .flex-container{
     font-size: 3rem;
@@ -31,4 +34,8 @@
 
 .SignUpPage .form-control{
     font-size: 2rem !important;
+}
+
+.SignUpPage .DoNotMatch{
+    font-size: 1.5rem !important;
 }
