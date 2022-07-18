@@ -4,9 +4,9 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 //StylSheets
-import "../../assets/Styles/HomePageStyle/StyleSheetTest.css"
 import "../../assets//Styles//HomePageStyle//DashboardStyle.css"
 import "../../assets///Styles//bootstrap.css"
+import "../../assets//Styles//GlobalStyle.css"
 //Components
 import NavBar from '../../Components/Re-Usable/NavBar'
 //*Images*/

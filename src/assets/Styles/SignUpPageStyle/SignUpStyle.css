@@ -1,31 +1,34 @@
-.body{
-    padding:0px;
-    margin:0px;
-}
-.flex-container{
+
+.SignUpPage .flex-container{
+    font-size: 3rem;
     display:flex;
     width: 100%;
     height: 100vh;
     justify-content: center;
     align-items: center;
-    
 }
-.form-container{
+
+.SignUpPage .form-container{
     display:flex;
     flex-direction:column;
     justify-content: center;
     align-items: center;
 
 }
-.img-fluid{
+.SignUpPage .img-fluid{
     width: 100%;
     height:100%;
 }
-.signUpButton{
+.SignUpPage .signUpButton{
+    font-size: 2rem !important;
     margin-left: 15%;
     width:70%;
 }
 /*Toast Login*/
-.LoginToast{
+.SignUpPage.SignUpToast{
     bottom: 20%;
+}
+
+.SignUpPage .form-control{
+    font-size: 2rem !important;
 }

@@ -11,8 +11,7 @@ import Button from 'react-bootstrap/Button';
 /*Style Sheets*/
 import 'react-toastify/dist/ReactToastify.css';
 import "../../assets/Styles/SignUpPageStyle/SignUpStyle.css"
-import 'react-toastify/dist/ReactToastify.css';
-import "../../assets/Styles/SignUpPageStyle/SignUpStyle.css"
+import "../../assets//Styles//GlobalStyle.css"
 /*images*/
 import SignUpLogo from "../../assets/Images/SignUpPageImages/SignUpImage.png"
 
@@ -87,8 +86,9 @@ export const SignUpPage = () => {
   }
 
   return (
-  <>
-    <ToastContainer className="LoginToast"></ToastContainer>
+  <div className="SignUpPage">
+    <>
+    <ToastContainer className="SignUpToast"></ToastContainer>
     <meta charSet="UTF-8" />
     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -99,7 +99,7 @@ export const SignUpPage = () => {
         <img
           src = {SignUpLogo}
           alt=""
-          className="img-fluid"
+          className=""
         />
         {error.length > 0 ? 
             <Alert variant="danger">
@@ -160,7 +160,7 @@ export const SignUpPage = () => {
           <button 
             disabled = {disableButton}
             type="submit"
-            className="btn btn-success signUpButton"
+            className= "btn btn-success signUpButton"  
             onClick={(e)=>{
               e.preventDefault();
               setDisableButton(true);
@@ -173,6 +173,8 @@ export const SignUpPage = () => {
       </div>
     </div>
   </>
+ </div>
+  
  
 
   )

@@ -3,6 +3,9 @@ import { useRef } from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
+import "../../assets/Styles/HomePageStyle/DashboardStyle.css"
+import "../../assets//Styles/bootstrap.css"
+
 
 const NavBar = () => {
 
@@ -23,30 +26,38 @@ const NavBar = () => {
 
 
   return (
+    
     <div className="Nav-Bar-Container">
-            <div className="nav-bar">
-              <ul className="nav-items">
-                <li className="nav-item Home">
-                  <a href className="NavLink">
-                    <i className="fa-solid fa-house fa-2xl" />
-                    Home
-                  </a>
-                </li>
-                <li className="nav-item Reserve">
-                  <a href className="NavLink">
-                    <i className="fa-solid fa-book fa-2xl" />
-                    Reserve
-                  </a>
-                </li>
-                <li className="nav-item LogOut">
-                  <a href className="NavLink">
-                    <i className="fa-solid fa-arrow-right-from-bracket fa-2xl" />
-                    Log Out
-                  </a>
-                </li>
-              </ul>
-            </div>
+                                          
+    <div className="nav-bar">
+      <ul className="nav-items">
+        <li className="nav-item Home">
+          
+          <a href ="#0" className="NavLink">
+            <i className="fa-solid fa-house fa-2xl" />
+               Home
+          </a>
+        </li>
+        <li className="nav-item Reserve">
+          <a href = "#0" className="NavLink">
+            <i className="fa-solid fa-book fa-2xl" />
+            Reserve
+          </a>
+        </li>
+        <li className="nav-item LogOut">
+          <a href = "#0" className="NavLink"
+                onClick={(e)=>{
+                  e.preventDefault();
+                  handleLogout();
+                }}>
+            <i className="fa-solid fa-arrow-right-from-bracket fa-2xl" />
+            Log Out
+          </a>
+        </li>
+      </ul>
     </div>
+  </div>
+
   )
 }
 export default NavBar
