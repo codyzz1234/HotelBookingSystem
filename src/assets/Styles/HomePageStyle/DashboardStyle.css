@@ -13,7 +13,7 @@ html{
 }
 
 /* Grid container when no sidebar present*/
-.grid-container-no-sidebar{
+.grid-container{
     padding: 0;
     margin:0;
     min-height:100vh;
@@ -27,52 +27,50 @@ html{
                         "nav nav"
                         "content content";
     justify-content:space-between;
-    align-items:center;
+    align-items:flex-start;
     border: 5px solid orange;  
     gap:1rem; 
     
 }
 
-/*Nav Bar*/
-.navbar{
+/*Nav Bar Container*/
+.Nav-Bar-Container{
     grid-area:nav;
-    height:100%;
-    display:flex;
+    height: 100%;
     border: solid 3px green; 
 }
 
-/*Content*/
-.content{
-    display:flex;
+.nav-bar{
     flex-direction: row;
-    grid-area:content;
+    display:flex;
+    width: 100%;
     height: 100%;
-    align-self:flex-start;
-    border: solid 5px darkblue;
-    justify-content:space-between;
+    border: solid 5px blue;
+    justify-content: end;
     align-items: center;
+}
+.nav-items{
+    list-style-type: none;
+    border:solid yellow 5px;
+    width: 100%;
+    font-size:1.6rem;
+    display:flex;
+    flex-direction:row;
+    align-items: flex-start;
+    justify-content: start;
     flex-wrap: wrap;
 }
-/*flex row*/
-.flex-row{
-    border:solid 5px cyan;
-    display:flex;
-    flex-direction: row;
-    min-width: 100%;
-    min-height: 50%;
-    align-items: center;
-    justify-content: space-around;
-    flex-wrap:wrap;
+.nav-item{
+    margin-right: 5%;
+}
+
+.nav-item.LogOut{
+    margin-left:auto;
+}
+
+/* Font Stylinng color*/
+.NavLink{
+    color:green;
 }
 
 
-
-.flex-item{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: start;
-    border: solid 5px red;
-    min-width: 30%;
-    
-}
