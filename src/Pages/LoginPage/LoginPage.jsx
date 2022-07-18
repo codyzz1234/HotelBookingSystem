@@ -120,7 +120,7 @@ function LoginPage() {
                     <br />
                     <br />
                     <button
-                          className="inplog btn btn-primary"
+                          className="inplog btn btn-primary SignInButton"
                           style={{ borderRadius: 15 }}
                           onClick = {(e)=>
                               {

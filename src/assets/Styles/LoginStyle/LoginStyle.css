@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+.SignInPage{
+    font-size: 1.5rem !important;
+}
 .SignInPage .index{
     margin-top: 20vh;
 }
-
 .SignInPage .pagelog{
     width: 100%;
 }
@@ -35,4 +37,9 @@
 }
 .SignInPage .SignInForm{
     font-size: 1.5rem !important;
+}
+
+.SignInPage .SignInButton{
+    font-size: 1.5rem !important;
+
 }
