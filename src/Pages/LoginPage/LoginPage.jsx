@@ -70,7 +70,8 @@ function LoginPage() {
     }
 
     return(
-      <>
+      <div className="SignInPage">
+    <>
         <ToastContainer className="signInToast"></ToastContainer>
         <div className="row">
           <div className="col-md-6">
@@ -95,7 +96,7 @@ function LoginPage() {
               <div className="col-md-3" />
               <div className="col-md-6">
                 <div style={{ textAlign: "center" }}>
-                  <form method="POST">
+                  <form method="POST" className = "SignInForm">
                     <input 
                       type="email"
                       className="inplog"
@@ -145,6 +146,8 @@ function LoginPage() {
           </div>
         </div>
       </>
+      </div>
+     
   ) 
 }
 export default LoginPage
