@@ -102,7 +102,7 @@ const ReservationPage = ()=>{
                 }}>
                       Add Reservation
               </button>
-              <AddReservationModal show = {showAddModal}  closeModal = {setShowAddModal}></AddReservationModal>
+              <AddReservationModal show = {showAddModal} closeModal = {setShowAddModal}></AddReservationModal>
             </div>
             <div className="table-container">
                 <DataGrid 

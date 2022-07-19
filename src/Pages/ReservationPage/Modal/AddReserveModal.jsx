@@ -10,7 +10,7 @@ const hideModal = () =>{
 }
 
   return (
-    <>s
+    <>
       <Modal show={props.show} onHide = {hideModal}>
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
