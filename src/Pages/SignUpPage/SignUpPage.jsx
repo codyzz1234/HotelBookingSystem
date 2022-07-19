@@ -63,7 +63,6 @@ export const SignUpPage = () => {
     /*Generate Sign up toast*/
     const signUpToast = ()=>{
       const customId = "custom-id-yes";
-
       toast.success('User Created', {
         toastId: customId,
         position: "bottom-center",

@@ -28,15 +28,25 @@ const NavBar = () => {
      navigate('Reservation');
   }
 
+  const goToHomePage = ()=>{
+
+    navigate('/HomePage');
+  }
+
 
   return (
     
     <div className="Nav-Bar-Container">                                
     <div className="nav-bar">
       <ul className="nav-items">
+       <h1 class = "welcome-message">{currentUser && currentUser.email}</h1>
         <li className="nav-item Home">
-          
-          <a href ="#0" className="NavLink">
+          <a href ="#0" className="NavLink"
+            onClick={(e)=>{
+               e.preventDefault();
+               goToHomePage();
+            }}>
+
             <i className="fa-solid fa-house fa-2xl" />
                Home
           </a>

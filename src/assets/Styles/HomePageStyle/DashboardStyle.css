@@ -2,7 +2,7 @@
 
 
 /* Grid Main container */
-.grid-container{
+.HomePage .grid-container{
     background-color: #EFEFEF;
     box-sizing: border-box;
     padding: 0;
@@ -25,14 +25,14 @@
 
 
 /*Nav Bar Container*/
-.Nav-Bar-Container{
+.HomePage .Nav-Bar-Container{
     height:100%;
     background-color: #5cb55c;
     grid-area:nav;
     display:flex;
 }
 
-.nav-bar{
+.HomePage .nav-bar{
     flex-direction: row;
     display:flex;
     width: 100%;
@@ -40,7 +40,7 @@
     justify-content: end;
     align-items: center;
 }
-.nav-items{
+.HomePage .nav-items{
     list-style-type: none;
     width: 100%;
     font-size:1.6rem;
@@ -50,26 +50,26 @@
     justify-content: start;
     flex-wrap: wrap;
 }
-.nav-item{
+.HomePage .nav-item{
     margin-right: 5%;
 }
 
-.nav-item.LogOut{
+.HomePage .nav-item.LogOut{
     margin-left:auto;
 }
 
 /* Font Stylinng color*/
-.NavLink{
+.HomePage .NavLink{
     color:white;
 }
 
 /* Content Container*/
-.Content-Container{
+.HomePage .Content-Container{
     height: 100%;
     grid-area: content;
 }
 
-.flex-container{
+.HomePage .flex-container{
     height: 50%;
     display:flex;
     justify-content: space-around;
@@ -79,7 +79,7 @@
     margin-bottom: 1%;
 }
 
-.flex-item{
+.HomePage .flex-item{
     border-radius: 25px;
     font-size: 1.5rem;
     width: 45rem;
@@ -92,16 +92,20 @@
     align-items:center;
 }
 
-.Flex-Item-Images{
+.HomePage .Flex-Item-Images{
     max-height: 20rem;
     max-width: 20rem;
     margin-bottom: 5%;
 }
 
-.BootStrapButton{
+.HomePage .BootStrapButton{
     font-size:1.5rem !important;
     height: 13%;
     width: 50%;
+}
+.HomePage .welcome-message{
+    font-size: 2rem !important;
+    margin-right: 2%;
 }
 
 
