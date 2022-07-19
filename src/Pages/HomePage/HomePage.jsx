@@ -4,11 +4,11 @@ import { useState } from 'react'
 import { Route, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 //StylSheets
-import "../../assets//Styles//HomePageStyle//DashboardStyle.css"
+import "../HomePage//DashboardStyle.css"
 import "../../assets///Styles//bootstrap.css"
 import "../../assets//Styles//GlobalStyle.css"
 //Components
-import NavBar from '../../Components/Re-Usable/NavBar'
+import NavBar from '../../Components/Re-Usable/NavBar/NavBar'
 //*Images*/
 import ReserveImage from "../../assets/Images/HomePageImages//ReserveImage.jpg"
 import CheckOutImage from "../../assets/Images/HomePageImages//CheckOutIcon.jpg"

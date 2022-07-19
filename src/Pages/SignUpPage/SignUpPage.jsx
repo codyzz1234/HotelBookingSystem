@@ -10,7 +10,7 @@ import { Alert } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 /*Style Sheets*/
 import 'react-toastify/dist/ReactToastify.css';
-import "../../assets/Styles/SignUpPageStyle/SignUpStyle.css"
+import "../SignUpPage//SignUpStyle.css";
 import "../../assets//Styles//GlobalStyle.css"
 /*images*/
 import SignUpLogo from "../../assets/Images/SignUpPageImages/SignUpImage.png"

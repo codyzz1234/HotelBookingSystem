@@ -9,7 +9,7 @@ import { Alert } from 'react-bootstrap'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 /*Local Style Sheet*/
-import "../../assets/Styles/LoginStyle/LoginStyle.css"
+import "../LoginPage//LoginStyle.css"
 
 
 

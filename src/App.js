@@ -19,7 +19,7 @@ function App() {
               {/*Home Page Routes*/}
               <Route path = "/HomePage">
                   <Route element = {<HomePage/>} exact path = "/HomePage"></Route>
-                  <Route element = {<ReservationPage/>} path = "Reservation"></Route>
+                  <Route element = {<ReservationPage/>} exact path = "/HomePage/Reservation"></Route>
               </Route>
           </Route>
         </Routes>
