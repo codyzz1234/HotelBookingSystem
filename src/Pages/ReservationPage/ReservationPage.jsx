@@ -2,36 +2,66 @@ import React from 'react'
 import { useEffect } from 'react'
 //*Components*//
 import NavBar from '../../Components/Re-Usable/NavBar/NavBar'
+import { useState } from 'react'
 /*Stylesheets*/
 import "../../assets///Styles//bootstrap.css"
 import "../../assets//Styles//GlobalStyle.css"
 import "../ReservationPage//ReservationStyle.css"
-
+import CustomerService from '../../services/customer.services'
 import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
 import { GridToolbar, GridToolbarColumnsButton, GridToolbarContainer, GridToolbarDensitySelector, GridToolbarExport, GridToolbarFilterButton, GridToolbarQuickFilter } from '@mui/x-data-grid/components'
-const ReservationPage = ()=>{
+import { async } from '@firebase/util'
+import { doc } from 'firebase/firestore'
 
-  const rows = [
-    { id: 1, col1: 'Hello', col2: 'World' },
-    { id: 2, col1: 'DataGridPro', col2: 'is Awesome' },
-    { id: 3, col1: 'MUI', col2: 'is Amazing' },
-  ];
+const ReservationPage = ()=>{
+  const customerService  = new CustomerService();
+  //Store firebase Data in this state*/
+  const[reserves,setReserves] = useState([]);
+
+  useEffect(() => {
+    
+    getAllReserve();
+  },[])
   
+  const getAllReserve = async() =>{
+    const data = await customerService.getAllReserve();
+    console.log(data.docs);
+    setReserves(data.docs.map((doc) => ({ id: doc.id, ...doc.data() })))
+  }
+
+
   const columns = [
-  
     {
-       flex:1,
-       field: 'col1', 
-       headerName: 'Column 1', 
-       width: 150,
+      flex:1,
+      field: 'id', 
+      headerName: 'ID', 
+      width: 150,
+    },
+    { 
+      flex:1,
+      field: 'FirstName', 
+      headerName: 'First Name', 
+      width: 150,
     },
 
     { 
       flex:1,
-      field: 'col2', 
-      headerName: 'Column 2', 
+      field: 'LastName', 
+      headerName: 'Last Name', 
       width: 150,
-    }
+    },
+    { 
+      flex:1,
+      field: 'CheckIn', 
+      headerName: 'Check In', 
+      width: 150,
+    },
+    { 
+      flex:1,
+      field: 'CheckOut', 
+      headerName: 'Check Out', 
+      width: 150,
+    },
   ];
   
 
@@ -57,11 +87,12 @@ const ReservationPage = ()=>{
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
         <title>Document</title>
         <div className="ReservationPage">
+          <pre>{JSON.stringify(reserves,undefined,2)}</pre>
           <div className="grid-container">
                 <NavBar></NavBar>
             <div className="table-container">
                 <DataGrid 
-                className="DataGrid" rows={rows} 
+                className="DataGrid" rows={reserves} 
                 columns = {columns}
                 components={{
                   Toolbar: customToolBar,

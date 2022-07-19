@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth'
+import {getFirestore} from "firebase/firestore"
 
 const app = initializeApp({
     apiKey: "AIzaSyBiMcQrTtRyHwRDKq_4JSLHcy_XVwxozo8",
@@ -19,4 +20,5 @@ export const methods = {
     onAuthStateChanged,
     signOut
 }
+export const db = getFirestore(app);
 export default app
