@@ -12,11 +12,14 @@ import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
 import { GridToolbar, GridToolbarColumnsButton, GridToolbarContainer, GridToolbarDensitySelector, GridToolbarExport, GridToolbarFilterButton, GridToolbarQuickFilter } from '@mui/x-data-grid/components'
 import { async } from '@firebase/util'
 import { doc } from 'firebase/firestore'
+import AddReservationModal from './Modal/AddReserveModal'
 
 const ReservationPage = ()=>{
   const customerService  = new CustomerService();
   //Store firebase Data in this state*/
   const[reserves,setReserves] = useState([]);
+
+  const[showAddModal,setShowAddModal] = useState(false);
 
   useEffect(() => {
     
@@ -93,9 +96,13 @@ const ReservationPage = ()=>{
                 <NavBar></NavBar>
 
             <div className="button-container">
-              <button className="btn btn-success reserve-button">
+              <button className="btn btn-success reserve-button"
+                onClick={(e)=>{
+                  setShowAddModal(true);
+                }}>
                       Add Reservation
               </button>
+              <AddReservationModal show = {showAddModal}  closeModal = {setShowAddModal}></AddReservationModal>
             </div>
             <div className="table-container">
                 <DataGrid 
@@ -111,6 +118,8 @@ const ReservationPage = ()=>{
       </div>
     )
 }
+
+/*show modal*/
 
 
 
