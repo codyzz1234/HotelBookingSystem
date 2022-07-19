@@ -78,7 +78,16 @@ function LoginPage() {
           <div className="col-md-6">
             <img src={adminLogoImage} className="pagelog" />
           </div>
+
           <div className="col-md-6">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             <br />
             <br />
             <br />
@@ -95,7 +104,7 @@ function LoginPage() {
             <br />
             <div className="row">
               <div className="col-md-3" />
-              <div className="col-md-6">
+              <div className="col-md-6 SignInColumn">
                 <div style={{ textAlign: "center" }}>
                   <form method="POST" className = "SignInForm">
                     <input 

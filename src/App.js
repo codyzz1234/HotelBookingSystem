@@ -5,7 +5,7 @@ import { SignUpPage } from './Pages/SignUpPage/SignUpPage';
 import{BrowserRouter, Route,Routes} from "react-router-dom";
 import ProtectedRoutes from './Components/ProtectedRoutes';
 import HomePage from './Pages/HomePage/HomePage';
-import ReservationPage from './Pages/ReservationPage/ReservationPage';
+import ReservationPage from './/Pages//ReservationPage//ReservationPage';
 
 function App() {
   return(
