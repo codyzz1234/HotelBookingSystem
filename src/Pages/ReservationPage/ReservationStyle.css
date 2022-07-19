@@ -9,9 +9,11 @@
     grid-template-columns:repeat(2,1fr);
     grid-template-rows: 
                         1fr
-                        9fr;
+                        .8fr
+                        8fr;
     grid-template-areas: 
                         "nav nav"
+                        "button button"
                         "content content";
     justify-content:space-between;
     align-items:flex-start;
@@ -28,3 +30,15 @@
 .ReservationPage .DataGrid{
     font-size: 1.7rem!important;
 }
+
+.button-container{
+    display:flex;
+    height: 100%;
+    justify-content: start;
+}
+.reserve-button{
+    width: 20%;
+    margin-left: 3%;
+    font-size:1.25rem;
+}
+

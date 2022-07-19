@@ -3,6 +3,7 @@ import { collection,getDocs,getDoc,addDoc,updateDoc,deleteDoc,doc} from "firebas
 
 const customerCollectionRef = collection(db,"Reserves")
 class CustomerService{
+    
     addReserve = (newReservation) =>{
         return addDoc(customerCollectionRef,newReservation)
     }

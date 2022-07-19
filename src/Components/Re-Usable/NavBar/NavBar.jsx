@@ -38,8 +38,8 @@ const NavBar = () => {
     
     <div className="Nav-Bar-Container">                                
     <div className="nav-bar">
+      <h1 class = "welcome-message">{currentUser && currentUser.email}</h1>
       <ul className="nav-items">
-       <h1 class = "welcome-message">{currentUser && currentUser.email}</h1>
         <li className="nav-item Home">
           <a href ="#0" className="NavLink"
             onClick={(e)=>{

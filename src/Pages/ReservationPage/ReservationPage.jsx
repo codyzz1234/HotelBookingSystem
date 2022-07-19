@@ -36,6 +36,7 @@ const ReservationPage = ()=>{
       field: 'id', 
       headerName: 'ID', 
       width: 150,
+      hide:true,
     },
     { 
       flex:1,
@@ -87,9 +88,15 @@ const ReservationPage = ()=>{
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
         <title>Document</title>
         <div className="ReservationPage">
-          <pre>{JSON.stringify(reserves,undefined,2)}</pre>
+          {/* <pre>{JSON.stringify(reserves,undefined,2)}</pre> */}
           <div className="grid-container">
                 <NavBar></NavBar>
+
+            <div className="button-container">
+              <button className="btn btn-success reserve-button">
+                      Add Reservation
+              </button>
+            </div>
             <div className="table-container">
                 <DataGrid 
                 className="DataGrid" rows={reserves} 
