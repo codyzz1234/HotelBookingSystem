@@ -1,0 +1,40 @@
+.Nav-Bar-Container{
+    height:100%;
+    background-color: #5cb55c;
+    grid-area:nav;
+    display:flex;
+}
+
+.nav-bar{
+    flex-direction: row;
+    display:flex;
+    width: 100%;
+    height: 100%;
+    justify-content: end;
+    align-items: center;
+}
+.nav-items{
+    list-style-type: none;
+    width: 100%;
+    font-size:1.6rem;
+    display:flex;
+    flex-direction:row;
+    align-items: flex-start;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+.nav-item{
+    margin-right: 5%;
+}
+.nav-item.LogOut{
+    margin-left:auto;
+}
+.NavLink{
+    color:white;
+}
+
+.welcome-message{
+    font-size: 2rem !important;
+    margin-right: 2%;
+    color:white
+}

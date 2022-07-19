@@ -1,0 +1,66 @@
+
+
+
+/* Grid Main container */
+.HomePage .grid-container{
+    background-color: #EFEFEF;
+    box-sizing: border-box;
+    padding: 0;
+    margin:0;
+    min-height:100vh;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    grid-template-rows: 
+                        1fr
+                        9fr;
+    grid-template-areas: 
+                        "nav nav"
+                        "content content";
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:1rem; 
+    overflow:hidden;
+
+}
+
+
+/* Content Container*/
+.HomePage .Content-Container{
+    height: 100%;
+    grid-area: content;
+}
+
+.HomePage .flex-container{
+    height: 50%;
+    display:flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap:2rem;
+    margin-bottom: 1%;
+}
+
+.HomePage .flex-item{
+    border-radius: 25px;
+    font-size: 1.5rem;
+    width: 45rem;
+    height:30rem;
+    color:white;
+    display:flex;
+    flex-direction:column;
+    background-color:wheat;
+    justify-content: center;
+    align-items:center;
+}
+
+.HomePage .Flex-Item-Images{
+    max-height: 20rem;
+    max-width: 20rem;
+    margin-bottom: 5%;
+}
+
+.HomePage .BootStrapButton{
+    font-size:1.5rem !important;
+    height: 13%;
+    width: 50%;
+}

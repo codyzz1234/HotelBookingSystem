@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+.SignInPage{
+    font-size: 1.5rem !important;
+}
+.SignInPage .index{
+    margin-top: 20vh;
+}
+.SignInPage .pagelog{
+    width: 100%;
+}
+.SignInPage .footer{
+    width: 100%;
+}
+.SignInPage .brandtitle{
+    font-family: 'Comfortaa', cursive;
+    font-size: 70px;
+    font-weight: bolder;
+    text-align: center;
+}
+.SignInPage .btns{
+    height: 55px;
+    width: 120px;
+    font-size: 50px;
+}
+.SignInPage .inplog{
+    width: 80%;
+    height: 50px;
+    border: .01;
+    border-radius: 15px;
+}
+.SignInPage .dashmenu{
+    height:30vh;   
+}
+
+.SignInPage .signInToast{
+    top: 50% !important;
+}
+.SignInPage .SignInForm{
+    font-size: 1.3rem !important;
+}
+
+.SignInPage .SignInButton{
+    font-size: 1.3rem !important;
+}

@@ -88,9 +88,6 @@ function LoginPage() {
             <br />
             <br />
             <br />
-            <br />
-            <br />
-            <br />
             <h1 className="brandtitle" style={{ fontSize: 50 }}>
               <b>Welcome Back!</b>
             </h1>
