@@ -32,12 +32,13 @@
 }
 
 .button-container{
+    grid-area: button;
     display:flex;
     height: 100%;
     justify-content: start;
 }
 .reserve-button{
-    width: 20%;
+    width: 15%;
     margin-left: 3%;
     font-size:1.25rem;
 }

@@ -18,19 +18,33 @@ const ReservationPage = ()=>{
   const customerService  = new CustomerService();
   //Store firebase Data in this state*/
   const[reserves,setReserves] = useState([]);
-
   const[showAddModal,setShowAddModal] = useState(false);
 
+  const[loadTable,setLoadTable] = useState(false);
+
   useEffect(() => {
-    
     getAllReserve();
   },[])
+
+  useEffect(()=>{
+    if(loadTable == false){
+      return;
+    }
+    else{
+      getAllReserve();
+      setLoadTable = true;
+    }
+  },[loadTable])
+
+
   
   const getAllReserve = async() =>{
     const data = await customerService.getAllReserve();
     console.log(data.docs);
     setReserves(data.docs.map((doc) => ({ id: doc.id, ...doc.data() })))
   }
+
+
 
 
   const columns = [
@@ -40,7 +54,7 @@ const ReservationPage = ()=>{
       headerName: 'ID', 
       width: 150,
       hide:true,
-    },
+    }, 
     { 
       flex:1,
       field: 'FirstName', 
@@ -91,7 +105,7 @@ const ReservationPage = ()=>{
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
         <title>Document</title>
         <div className="ReservationPage">
-          {/* <pre>{JSON.stringify(reserves,undefined,2)}</pre> */}
+          <pre>{JSON.stringify(reserves,undefined,2)}</pre>
           <div className="grid-container">
                 <NavBar></NavBar>
 
@@ -104,6 +118,7 @@ const ReservationPage = ()=>{
               </button>
               <AddReservationModal show = {showAddModal} closeModal = {setShowAddModal}></AddReservationModal>
             </div>
+
             <div className="table-container">
                 <DataGrid 
                 className="DataGrid" rows={reserves} 
