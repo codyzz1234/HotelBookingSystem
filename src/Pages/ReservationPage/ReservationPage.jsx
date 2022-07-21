@@ -13,13 +13,40 @@ import { GridToolbar, GridToolbarColumnsButton, GridToolbarContainer, GridToolba
 import { async } from '@firebase/util'
 import { doc } from 'firebase/firestore'
 import AddReservationModal from './Modal/AddReserveModal'
+import EditReservationModal from './Modal/EditReservationModal'
+
 
 const ReservationPage = ()=>{
   const customerService  = new CustomerService();
   //Store firebase Data in this state*/
   const[reserves,setReserves] = useState([]);
+  /*Show Modal States*/
   const[showAddModal,setShowAddModal] = useState(false);
+  const[showEditModal,setShowEditModal] = useState(false);
+  const[showDeleteModal,setShowDeleteModal] = useState(false);
+  const[reserveInfo,setReserveInfo] = useState(" ");
+  /* Pass these states to modal*/
+  const[firstName,setFirstName] = useState()
+  const[lastName,setLastName] = useState();
+  const[checkIn,setCheckIn] = useState();
+  const[checkOut,setCheckOut] = useState();
+  const[roomNum,setRoomNum] = useState();
+  const currentStateValue = {
+    firstName,
+    lastName,
+    checkIn,
+    checkOut,
+    roomNum,
+  }
+  const setStateValue = {
+    setFirstName,
+    setLastName,
+    setCheckIn,
+    setCheckOut,
+    setRoomNum,
+  }
 
+  /*load table state*/
   const[loadTable,setLoadTable] = useState(false);
 
   useEffect(() => {
@@ -86,7 +113,37 @@ const ReservationPage = ()=>{
       headerName: 'Room Number', 
       width: 150,
     },
+    {
+      field:'action',
+      flex:1,
+      headerName:"Actions",
+      renderCell:(params)=>{
+        // console.log(params)
+         return(
+          <>
+          <button type="button" className="btn btn-info"
+            onClick={(e)=>{
+              EditReservation(params);
+            }}>
+            Edit
+          </button>
+          <button type="button" className="btn btn-danger">
+            Delete
+          </button>
+          </>
+         )
+      }
+    }
   ];
+
+  const EditReservation = (params)=>{
+    setReserveInfo(params.row);
+    setShowEditModal(true);
+  }
+  const DeleteReservation = (params) =>{
+    console.log(obj);
+    let obj = params.row;
+  }
   
 
   /* Custom Grid Toolbar */
@@ -122,7 +179,6 @@ const ReservationPage = ()=>{
                 }}>
                       Add Reservation
               </button>
-              <AddReservationModal show = {showAddModal} closeModal = {setShowAddModal}></AddReservationModal>
             </div>
 
             <div className="table-container">
@@ -136,11 +192,24 @@ const ReservationPage = ()=>{
             </div>
           </div>
         </div>
+        {/* Modals */}
+        <AddReservationModal 
+        show = {showAddModal} 
+        closeModal = {setShowAddModal}
+        currentStateValue = {currentStateValue}
+        setStateValue = {setStateValue}
+        >
+
+        </AddReservationModal>
+        <EditReservationModal reserveInfo = {reserveInfo} show = {showEditModal} closeModal = {setShowEditModal}></EditReservationModal>
+
       </div>
+      
     )
 }
 
 /*show modal*/
+
 
 
 

@@ -43,7 +43,10 @@ const HomePage = () => {
         <div className="flex-container">
           <div className="flex-item">
             <img src={ReserveImage} alt="" className="Flex-Item-Images" />
-            <button type="button" className="btn btn-success BootStrapButton">
+            <button type="button" className="btn btn-success BootStrapButton"
+              onClick={(e)=>{
+                navigate('/HomePage/Reservation')
+              }}>
               Reserve A Room
             </button>
           </div>
