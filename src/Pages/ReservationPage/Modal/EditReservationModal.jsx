@@ -4,7 +4,6 @@ import { Alert } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import { useRef } from 'react';
 /*Services*/
 import CustomerService from '../../../services/customer.services';
 import RoomService from "../../../services/room.service"
@@ -13,21 +12,14 @@ import "react-widgets/styles.css";
 import { Combobox } from 'react-widgets';
 
 function EditReservationModal(props) {
-let reserveInfo = props.reserveInfo;
 let messageDisplayed;
 const customerService = new CustomerService();
 const roomService = new RoomService();
-
-const roomNum = useRef();
-const firstName = useRef();
-const lastName = useRef();
-const checkIn = useRef();
-const checkOut = useRef();
-
-
-
-
 const[message,setMessage] = useState({type:"none",displayMessage:""});
+
+
+let currentStateValue = props.currentStateValue;
+let setStateValue = props.setStateValue;
 
 /*load combo box*/
 const[rooms,setRooms] = useState([]);
@@ -36,24 +28,7 @@ const hideModal = () =>{
     props.closeModal(false);
 }
 
-// const addReserve = async(e) =>{
-//   e.preventDefault();
-//   const newReserve = {
-//     FirstName:firstName,
-//     LastName:lastName,
-//     CheckInDate:checkIn,
-//     CheckOutDate:checkOut,
-//     RoomNumber:roomNum
-//   }
 
-//   try{
-//     await customerService.addReserve(newReserve);
-//     setMessage({type:"true",displayMessage:"Reservation Added Successfully"})
-//   }
-//   catch(error){
-//     setMessage({type:"false",displayMessage:error.message});
-//   }
-// }
 
 useEffect(() => {
   loadRoomsForComboBox();
@@ -69,7 +44,6 @@ async function loadRoomsForComboBox(){
     setMessage({type:"false",displayMessage:"Failed To Load Rooms Combobox"})
   }
 }
-
   return (
       <>
         <pre>{JSON.stringify(rooms,undefined,2)}</pre>
@@ -94,11 +68,11 @@ async function loadRoomsForComboBox(){
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Room Number</Form.Label>
                   <Combobox
-                    defaultValue = {reserveInfo.RoomNumber}
+                    defaultValue={currentStateValue.roomNum}
                     data = {rooms}
                     dataKey = 'id'
                     textField = 'RoomNumber'
-                    ref = {roomNum}
+                    onChange={value => setStateValue.setRoomNum(value.RoomNumber)}
                     >
                   </Combobox>
                
@@ -107,11 +81,13 @@ async function loadRoomsForComboBox(){
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>First Name</Form.Label>
                 <Form.Control
+                  value = {currentStateValue.firstName}
                   type="text"
                   placeholder="First Name..."
                   autoFocus
-                  defaultValue = {reserveInfo.FirstName}
-                  ref = {firstName}
+                  onChange = {(e)=>{
+                    setStateValue.setFirstName(e.target.value);
+                  }}
 
                 />
               </Form.Group>
@@ -119,11 +95,13 @@ async function loadRoomsForComboBox(){
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Last Name</Form.Label>
                 <Form.Control
+                  value = {currentStateValue.lastName}
                   type="text"
                   placeholder="Last Name..."
                   autoFocus
-                  defaultValue={reserveInfo.LastName}
-                  ref = {lastName}
+                  onChange = {(e)=>{
+                    setStateValue.setLastName(e.target.value);
+                  }}
         
 
                 />
@@ -133,11 +111,13 @@ async function loadRoomsForComboBox(){
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Check In Date</Form.Label>
                 <Form.Control
+                  value = {currentStateValue.checkIn}
                   type="date"
                   placeholder="Check In Date..."
                   autoFocus
-                  defaultValue = {reserveInfo.CheckInDate}
-                  ref = {checkIn}
+                  onChange={(e) =>{
+                    setStateValue.setCheckIn(e.target.value);
+                  }}
               
                 >  
                 </Form.Control>
@@ -147,11 +127,13 @@ async function loadRoomsForComboBox(){
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Check Out Date</Form.Label>
                 <Form.Control
+                  value = {currentStateValue.checkOut}
                   type="date"
                   placeholder="Check Out Date.."
                   autoFocus
-                  defaultValue = {reserveInfo.CheckOutDate}
-                  ref = {checkOut}
+                  onChange = {(e)=>{
+                    setStateValue.setCheckOut(e.target.value);
+                  }}
                 />
               </Form.Group>
             </Form>
@@ -163,30 +145,23 @@ async function loadRoomsForComboBox(){
             }}>
               Close
             </Button>
-            <Button variant="info" 
-            onClick={(e)=>{
-              e.preventDefault();
-              console.log("Prevented Default");
-            }}
-            >
+            <Button variant="info" onClick = {(e)=>{
+                e.preventDefault();
+                printState();
+            }} >
               Edit Reservation
             </Button>
           </Modal.Footer>
         </Modal>
       </>
-  );
-  
-  function editReservation(){
-    const editReserve = {
-      FirstName:firstName.current.value,
-      LastName:lastName.current.value,
-      CheckInDate:checkIn.current.value,
-      CheckOutDate:checkOut.current.value,
-      RoomNumber:roomNum.current.value
-    }
-  }
 
-  
+  );
+  function printState(){
+    alert("Hello");
+    console.log(currentStateValue.id);
+  }
+ 
+
 }
 
 export default EditReservationModal;

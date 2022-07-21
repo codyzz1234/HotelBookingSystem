@@ -26,12 +26,14 @@ const ReservationPage = ()=>{
   const[showDeleteModal,setShowDeleteModal] = useState(false);
   const[reserveInfo,setReserveInfo] = useState(" ");
   /* Pass these states to modal*/
+  const[id,setId] = useState(0);
   const[firstName,setFirstName] = useState()
   const[lastName,setLastName] = useState();
   const[checkIn,setCheckIn] = useState();
   const[checkOut,setCheckOut] = useState();
   const[roomNum,setRoomNum] = useState();
   const currentStateValue = {
+    id,
     firstName,
     lastName,
     checkIn,
@@ -39,6 +41,7 @@ const ReservationPage = ()=>{
     roomNum,
   }
   const setStateValue = {
+    setId,
     setFirstName,
     setLastName,
     setCheckIn,
@@ -117,7 +120,7 @@ const ReservationPage = ()=>{
       field:'action',
       flex:1,
       headerName:"Actions",
-      renderCell:(params)=>{
+      renderCell:(params)=>{ // 
         // console.log(params)
          return(
           <>
@@ -137,9 +140,17 @@ const ReservationPage = ()=>{
   ];
 
   const EditReservation = (params)=>{
-    setReserveInfo(params.row);
+    let reserveInfo = params.row;
+    // console.log(reserveInfo); // Print Current row being ;clicked
+    setId(reserveInfo.id);
+    setFirstName(reserveInfo.FirstName)
+    setLastName(reserveInfo.LastName)
+    setCheckIn(reserveInfo.CheckInDate)
+    setCheckOut(reserveInfo.CheckOutDate)
+    setRoomNum(reserveInfo.RoomNumber)
     setShowEditModal(true);
   }
+
   const DeleteReservation = (params) =>{
     console.log(obj);
     let obj = params.row;
@@ -199,9 +210,15 @@ const ReservationPage = ()=>{
         currentStateValue = {currentStateValue}
         setStateValue = {setStateValue}
         >
-
         </AddReservationModal>
-        <EditReservationModal reserveInfo = {reserveInfo} show = {showEditModal} closeModal = {setShowEditModal}></EditReservationModal>
+
+        <EditReservationModal 
+          show = {showEditModal}
+          closeModal = {setShowEditModal}
+          currentStateValue = {currentStateValue}
+          setStateValue = {setStateValue}
+        >
+        </EditReservationModal>
 
       </div>
       
