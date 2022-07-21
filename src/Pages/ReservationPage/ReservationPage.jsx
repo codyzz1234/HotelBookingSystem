@@ -7,7 +7,7 @@ import { useState } from 'react'
 import "../../assets///Styles//bootstrap.css"
 import "../../assets//Styles//GlobalStyle.css"
 import "../ReservationPage//ReservationStyle.css"
-import CustomerService from '../../services/Add New Reservation/customer.services.js'
+import CustomerService from '../../services//customer.services'
 import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
 import { GridToolbar, GridToolbarColumnsButton, GridToolbarContainer, GridToolbarDensitySelector, GridToolbarExport, GridToolbarFilterButton, GridToolbarQuickFilter } from '@mui/x-data-grid/components'
 import { async } from '@firebase/util'

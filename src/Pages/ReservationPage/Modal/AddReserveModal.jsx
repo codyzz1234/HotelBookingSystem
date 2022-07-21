@@ -1,23 +1,29 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { Alert } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import CustomerService from '../../../services/Add New Reservation//customer.services.js'
-
-/*Date functions import*/
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
+/*Services*/
+import CustomerService from '../../../services/customer.services';
+import RoomService from "../../../services/room.service"
+/*React Widgets*/
+import "react-widgets/styles.css";
+import { Combobox } from 'react-widgets';
 
 function AddReservationModal(props) {
 let messageDisplayed;
 const customerService = new CustomerService();
+const roomService = new RoomService();
 const[roomNum,setRoomNum] = useState();
 const [firstName,setFirstName] = useState();
 const[lastName,setLastName] = useState();
 const[checkIn,setCheckIn] = useState();
 const[checkOut,setCheckOut] = useState()
 const[message,setMessage] = useState({type:"none",displayMessage:""});
+
+/*load combo box*/
+const[rooms,setRooms] = useState([]);
 
 const hideModal = () =>{ 
     props.closeModal(false);
@@ -42,15 +48,25 @@ const addReserve = async(e) =>{
   }
 }
 
+useEffect(() => {
+  loadRoomsForComboBox();
+},[]);
 
-
-
-
+async function loadRoomsForComboBox(){
+  try{
+    const data = await roomService.getAllRooms();
+    setRooms(data.docs.map((doc) => ({ id: doc.id, ...doc.data() })))
+    setMessage({type:"true",displayMessage:""})
+  }
+  catch(error){
+    setMessage({type:"false",displayMessage:"Failed To Load Rooms Combobox"})
+  }
+}
 
   return (
       <>
+        <pre>{JSON.stringify(rooms,undefined,2)}</pre>
         <Modal show={props.show} onHide = {hideModal}>
-
           <Modal.Header closeButton>
           {
                 message.type === "true" ?
@@ -70,15 +86,16 @@ const addReserve = async(e) =>{
             <Form>
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Room Number</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Input Room Number Here"
-                  autoFocus
-                  onChange = {(e)=>{
-                    setRoomNum(e.target.value);
-                  }}
-
-                />
+                  <Combobox
+                    defaultValue=''
+                    data = {rooms}
+                    dataKey = 'id'
+                    textField = 'RoomNumber'
+                    value = {roomNum}
+                    onChange={value => setRoomNum(value.RoomNumber)}
+                    >
+                  </Combobox>
+               
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -155,6 +172,8 @@ const addReserve = async(e) =>{
       </>
 
   );
+
+  
 }
 
 export default AddReservationModal;
