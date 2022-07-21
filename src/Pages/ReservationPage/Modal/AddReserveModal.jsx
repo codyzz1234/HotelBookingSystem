@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import CustomerService from '../../../services/customer.services'
+import CustomerService from '../../../services/Add New Reservation//customer.services.js'
 
 
 function AddReservationModal(props) {

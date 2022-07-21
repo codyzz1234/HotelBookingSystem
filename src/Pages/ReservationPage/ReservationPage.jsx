@@ -7,7 +7,7 @@ import { useState } from 'react'
 import "../../assets///Styles//bootstrap.css"
 import "../../assets//Styles//GlobalStyle.css"
 import "../ReservationPage//ReservationStyle.css"
-import CustomerService from '../../services/customer.services'
+import CustomerService from '../../services/Add New Reservation/customer.services.js'
 import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
 import { GridToolbar, GridToolbarColumnsButton, GridToolbarContainer, GridToolbarDensitySelector, GridToolbarExport, GridToolbarFilterButton, GridToolbarQuickFilter } from '@mui/x-data-grid/components'
 import { async } from '@firebase/util'
@@ -70,14 +70,20 @@ const ReservationPage = ()=>{
     },
     { 
       flex:1,
-      field: 'CheckIn', 
+      field: 'CheckInDate', 
       headerName: 'Check In', 
       width: 150,
     },
     { 
       flex:1,
-      field: 'CheckOut', 
+      field: 'CheckOutDate', 
       headerName: 'Check Out', 
+      width: 150,
+    },
+    { 
+      flex:1,
+      field: 'RoomNumber', 
+      headerName: 'Room Number', 
       width: 150,
     },
   ];
@@ -105,7 +111,7 @@ const ReservationPage = ()=>{
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
         <title>Document</title>
         <div className="ReservationPage">
-          <pre>{JSON.stringify(reserves,undefined,2)}</pre>
+          {/* <pre>{JSON.stringify(reserves,undefined,2)}</pre> */}
           <div className="grid-container">
                 <NavBar></NavBar>
 
