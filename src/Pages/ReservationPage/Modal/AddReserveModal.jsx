@@ -44,13 +44,28 @@ const addReserve = async(e) =>{
   try{
     await customerService.addReserve(newReserve);
     setMessage({type:"true",displayMessage:"Reservation Added Successfully"})
-    setLoadTable(true);
-    const timer = setTimeout(() =>hideModal(), 2000);
+    const timer = setTimeout(() =>
+    {
+      resetStates();
+      setMessage({type:"none",displayMessage:""})
+      setLoadTable(true);
+      hideModal();
+    },2000);
+
+  
   }
   catch(error){
     setMessage({type:"false",displayMessage:error.message});
-    
+
   }
+}
+
+const resetStates = () =>{
+  setStateValue.setFirstName(null);
+  setStateValue.setLastName(null);
+  setStateValue.setCheckIn(null);
+  setStateValue.setCheckOut(null);
+  setStateValue.setRoomNum(null);
 }
 
 useEffect(() => {
