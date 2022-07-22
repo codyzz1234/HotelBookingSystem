@@ -57,12 +57,14 @@ const ReservationPage = ()=>{
   },[])
 
   useEffect(()=>{
-    if(loadTable == false){
+    if(loadTable === false){
+      console.log("Load table is false")
       return;
     }
     else{
+      console.log(" table is true")
       getAllReserve();
-      setLoadTable = true;
+      setLoadTable(false);
     }
   },[loadTable])
 
@@ -82,39 +84,33 @@ const ReservationPage = ()=>{
       flex:1,
       field: 'id', 
       headerName: 'ID', 
-      width: 150,
       hide:true,
     }, 
     { 
       flex:1,
       field: 'FirstName', 
       headerName: 'First Name', 
-      width: 150,
     },
 
     { 
       flex:1,
       field: 'LastName', 
       headerName: 'Last Name', 
-      width: 150,
     },
     { 
       flex:1,
       field: 'CheckInDate', 
       headerName: 'Check In', 
-      width: 150,
     },
     { 
       flex:1,
       field: 'CheckOutDate', 
       headerName: 'Check Out', 
-      width: 150,
     },
     { 
       flex:1,
       field: 'RoomNumber', 
       headerName: 'Room Number', 
-      width: 150,
     },
     {
       field:'action',
@@ -209,6 +205,7 @@ const ReservationPage = ()=>{
         closeModal = {setShowAddModal}
         currentStateValue = {currentStateValue}
         setStateValue = {setStateValue}
+        setLoadTable = {setLoadTable}
         >
         </AddReservationModal>
 

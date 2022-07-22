@@ -21,6 +21,8 @@ const[message,setMessage] = useState({type:"none",displayMessage:""});
 let currentStateValue = props.currentStateValue;
 let setStateValue = props.setStateValue;
 
+let setLoadTable = props.setLoadTable;
+
 /*load combo box*/
 const[rooms,setRooms] = useState([]);
 
@@ -28,6 +30,7 @@ const hideModal = () =>{
     props.closeModal(false);
 }
 
+//* Add new reservation *//
 const addReserve = async(e) =>{
   e.preventDefault();
   const newReserve = {
@@ -41,6 +44,8 @@ const addReserve = async(e) =>{
   try{
     await customerService.addReserve(newReserve);
     setMessage({type:"true",displayMessage:"Reservation Added Successfully"})
+    setLoadTable(true);
+    const timer = setTimeout(() =>hideModal(), 2000);
   }
   catch(error){
     setMessage({type:"false",displayMessage:error.message});
@@ -51,6 +56,7 @@ useEffect(() => {
   loadRoomsForComboBox();
 },[]);
 
+//*Loads combo box*//
 async function loadRoomsForComboBox(){
   try{
     const data = await roomService.getAllRooms();
@@ -169,13 +175,7 @@ async function loadRoomsForComboBox(){
       </>
 
   );
-  function tryAdd(){
-    console.log("is " + currentStateValue.firstName)
-    console.log("is " + currentStateValue.lastName)
-    console.log("is " + currentStateValue.checkIn)
-    console.log(" is " + currentStateValue.checkOut)
-    console.log(" is " + currentStateValue.roomNum)
-  }
+
 
 
 }
