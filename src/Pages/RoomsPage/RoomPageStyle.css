@@ -1,5 +1,5 @@
 
-.ReservationPage .grid-container{
+.RoomPage .grid-container{
     background-color: #EFEFEF;
     box-sizing: border-box;
     padding: 0;
@@ -21,27 +21,23 @@
     overflow:hidden;
 }
 
-.ReservationPage .table-container{
+.RoomPage .table-container{
     grid-area: content;
-    border: 5px solid green;
     height: 100%;
     
 }
-.ReservationPage .DataGrid{
+.RoomPage .DataGrid{
     font-size: 1.7rem!important;
 }
 
-
-.ReservationPage .button-container{
+.RoomPage .button-container{
     grid-area: button;
     display:flex;
     height: 100%;
     justify-content: start;
 }
-
-.ReservationPage .reserve-button{
+.RoomPage .room-button{
     width: 15%;
     margin-left: 3%;
     font-size:1.25rem;
 }
-

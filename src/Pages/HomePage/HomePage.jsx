@@ -56,7 +56,11 @@ const HomePage = () => {
 
           <div className="flex-item">
             <img src={RoomImage} alt="" className="Flex-Item-Images" />
-            <button type="button" className="btn btn-primary BootStrapButton">
+            <button type="button" className="btn btn-primary BootStrapButton"
+              onClick={(e)=>{
+                navigate("/HomePage/RoomsPage")
+              }}
+            >
               Add A Room
             </button>
           </div>

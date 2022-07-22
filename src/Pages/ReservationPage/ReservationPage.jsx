@@ -54,6 +54,7 @@ const ReservationPage = ()=>{
   const[loadTable,setLoadTable] = useState(false);
 
   useEffect(() => {
+    console.log("render");
     getAllReserve();
   },[])
 
@@ -75,11 +76,34 @@ const ReservationPage = ()=>{
     const data = await reserveService.getAllReserve();
     console.log(data.docs);
     setReserves(data.docs.map((doc) => ({ id: doc.id, ...doc.data() })))
+ 
   }
 
 
 
 
+
+  const EditReservation = (params)=>{
+    let reserveInfo = params.row;
+    console.log("Firebase Key values" + JSON.stringify(reserveInfo,undefined,2)); // Print Current row being ;clicked
+    setId(reserveInfo.id);
+    setFirstName(reserveInfo.FirstName)
+    setLastName(reserveInfo.LastName)
+    setCheckIn(reserveInfo.CheckInDate)
+    setCheckOut(reserveInfo.CheckOutDate)
+    setRoomNum(reserveInfo.RoomNumber)
+    setShowEditModal(true);
+  }
+
+  const DeleteReservation = (params) =>{
+    let data = params.row
+    let id = data.id;
+    setStateValue.setId(id);
+    setShowDeleteModal(true);
+  }
+  
+  //*Grid generation Parameters*//
+  
   const columns = [
     {
       flex:1,
@@ -139,26 +163,6 @@ const ReservationPage = ()=>{
       }
     }
   ];
-
-  const EditReservation = (params)=>{
-    let reserveInfo = params.row;
-    console.log("Firebase Key values" + JSON.stringify(reserveInfo,undefined,2)); // Print Current row being ;clicked
-    setId(reserveInfo.id);
-    setFirstName(reserveInfo.FirstName)
-    setLastName(reserveInfo.LastName)
-    setCheckIn(reserveInfo.CheckInDate)
-    setCheckOut(reserveInfo.CheckOutDate)
-    setRoomNum(reserveInfo.RoomNumber)
-    setShowEditModal(true);
-  }
-
-  const DeleteReservation = (params) =>{
-    let data = params.row
-    let id = data.id;
-    setStateValue.setId(id);
-    setShowDeleteModal(true);
-  }
-  
 
   /* Custom Grid Toolbar */
   const customToolBar = () =>{
