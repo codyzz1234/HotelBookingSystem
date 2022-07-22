@@ -7,7 +7,7 @@ import { useState } from 'react'
 import "../../assets///Styles//bootstrap.css"
 import "../../assets//Styles//GlobalStyle.css"
 import "../ReservationPage//ReservationStyle.css"
-import CustomerService from '../../services//customer.services'
+import ReserveService from '../../services/reserve.services'
 import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
 import { GridToolbar, GridToolbarColumnsButton, GridToolbarContainer, GridToolbarDensitySelector, GridToolbarExport, GridToolbarFilterButton, GridToolbarQuickFilter } from '@mui/x-data-grid/components'
 import { async } from '@firebase/util'
@@ -17,7 +17,7 @@ import EditReservationModal from './Modal/EditReservationModal'
 
 
 const ReservationPage = ()=>{
-  const customerService  = new CustomerService();
+  const reserveService  = new ReserveService();
   //Store firebase Data in this state*/
   const[reserves,setReserves] = useState([]);
   /*Show Modal States*/
@@ -71,7 +71,7 @@ const ReservationPage = ()=>{
 
   
   const getAllReserve = async() =>{
-    const data = await customerService.getAllReserve();
+    const data = await reserveService.getAllReserve();
     console.log(data.docs);
     setReserves(data.docs.map((doc) => ({ id: doc.id, ...doc.data() })))
   }
@@ -137,7 +137,7 @@ const ReservationPage = ()=>{
 
   const EditReservation = (params)=>{
     let reserveInfo = params.row;
-    // console.log(reserveInfo); // Print Current row being ;clicked
+    console.log("Firebase Key values" + JSON.stringify(reserveInfo,undefined,2)); // Print Current row being ;clicked
     setId(reserveInfo.id);
     setFirstName(reserveInfo.FirstName)
     setLastName(reserveInfo.LastName)
@@ -214,6 +214,7 @@ const ReservationPage = ()=>{
           closeModal = {setShowEditModal}
           currentStateValue = {currentStateValue}
           setStateValue = {setStateValue}
+          setLoadTable = {setLoadTable}
         >
         </EditReservationModal>
 

@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 /*Services*/
-import CustomerService from '../../../services/customer.services';
+import ReserveService from '../../../services/reserve.services';
 import RoomService from "../../../services/room.service"
 /*React Widgets*/
 import "react-widgets/styles.css";
@@ -13,7 +13,7 @@ import { Combobox } from 'react-widgets';
 
 function AddReservationModal(props) {
 let messageDisplayed;
-const customerService = new CustomerService();
+const reserveService = new ReserveService();
 const roomService = new RoomService();
 const[message,setMessage] = useState({type:"none",displayMessage:""});
 
@@ -42,7 +42,8 @@ const addReserve = async(e) =>{
   }
 
   try{
-    await customerService.addReserve(newReserve);
+
+    await reserveService.addReserve(newReserve);
     setMessage({type:"true",displayMessage:"Reservation Added Successfully"})
     const timer = setTimeout(() =>
     {

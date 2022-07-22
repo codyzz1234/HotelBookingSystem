@@ -5,31 +5,40 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 /*Services*/
-import CustomerService from '../../../services/customer.services';
+import ReserveService from '../../../services/reserve.services';
 import RoomService from "../../../services/room.service"
 /*React Widgets*/
 import "react-widgets/styles.css";
 import { Combobox } from 'react-widgets';
 
+
+
+
+
+
 function EditReservationModal(props) {
 let messageDisplayed;
-const customerService = new CustomerService();
+const reserveService = new ReserveService();
 const roomService = new RoomService();
 const[message,setMessage] = useState({type:"none",displayMessage:""});
 
+/*set load table state*/
+let setLoadTable = props.setLoadTable;
 
+/*get state value*/
 let currentStateValue = props.currentStateValue;
+/*get set state method*/
 let setStateValue = props.setStateValue;
 
 /*load combo box*/
-const[rooms,setRooms] = useState([]);
+const[rooms,setRooms] = useState();
 
 const hideModal = () =>{ 
     props.closeModal(false);
 }
 
 
-
+//* Load combo box*//
 useEffect(() => {
   loadRoomsForComboBox();
 },[]);
@@ -44,6 +53,53 @@ async function loadRoomsForComboBox(){
     setMessage({type:"false",displayMessage:"Failed To Load Rooms Combobox"})
   }
 }
+
+
+const updateReservation = async(currentStateValue) =>{
+  let id = currentStateValue.id;
+  try{
+    const docSnap = await reserveService.getReserve(id);
+    if(docSnap.exists()){
+      console.log("Document data:", docSnap.data());
+      const updatedReservation = {
+        FirstName:currentStateValue.firstName,
+        LastName:currentStateValue.lastName,
+        RoomNumber:currentStateValue.roomNum,
+        CheckInDate:currentStateValue.checkIn,
+        CheckOutDate:currentStateValue.checkOut
+      }
+      try{
+        await reserveService.updateReserve(id,updatedReservation)
+        const timer = setTimeout(() =>
+        {
+          setMessage({type:"none",displayMessage:""})
+          setLoadTable(true);
+          hideModal();
+        },2000);
+        setMessage({type:"true",displayMessage:"Updated Book successfully"})
+      }
+      catch(error){
+        setMessage({type:"none",displayMessage:error.message})
+      }
+    }
+    else{
+      setMessage({type:"false",displayMessage:"No such Reservation Found"})
+    }
+  }
+  catch(error){
+    console.log("Error" + error.message);
+  }
+  
+  const updatedReservation = {
+    FirstName:currentStateValue.firstName,
+    LastName:currentStateValue.lastName,
+    RoomNumber:currentStateValue.roomNum,
+    CheckInDate:currentStateValue.checkIn,
+    CheckOutDate:currentStateValue.checkOut
+  }
+}
+
+
   return (
       <>
         <pre>{JSON.stringify(rooms,undefined,2)}</pre>
@@ -147,19 +203,16 @@ async function loadRoomsForComboBox(){
             </Button>
             <Button variant="info" onClick = {(e)=>{
                 e.preventDefault();
-                printState();
+                updateReservation(currentStateValue);
             }} >
               Edit Reservation
             </Button>
           </Modal.Footer>
         </Modal>
       </>
-
   );
-  function printState(){
-    alert("Hello");
-    console.log(currentStateValue.id);
-  }
+
+ 
  
 
 }

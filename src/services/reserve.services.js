@@ -1,31 +1,31 @@
 import { db } from "../firebase/firebase";
 import { collection,getDocs,getDoc,addDoc,updateDoc,deleteDoc,doc} from "firebase/firestore";
 
-const customerCollectionRef = collection(db,"Reserves")
+const reserveCollectionRef = collection(db,"Reserves")
 
-class CustomerService{
+class ReserveService{
     addReserve = (newReservation) =>{
-        return addDoc(customerCollectionRef,newReservation)
+        return addDoc(reserveCollectionRef,newReservation)
     }
     
     updateReserve = (id,updatedReservation) =>{
-        const reserveDoc = doc(db,"Customers",id);
+        const reserveDoc = doc(db,"Reserves",id);
         return updateDoc(reserveDoc,updatedReservation)
     }
 
     deleteReserve = (id) => {
-        const reserveDoc = doc(db,"Customers",id);
+        const reserveDoc = doc(db,"Reserves",id);
         return deleteDoc(reserveDoc);
     }
     getAllReserve = () =>{
-        return getDocs(customerCollectionRef);
+        return getDocs(reserveCollectionRef);
     }
 
     getReserve = (id) =>{
-        const reserveDoc = doc(db,"Customers",id);
-        return getDocs(reserveDoc);
+        const reserveDoc = doc(db,"Reserves",id);
+        return getDoc(reserveDoc);
     }
 }
 
 
-export default CustomerService
+export default ReserveService
