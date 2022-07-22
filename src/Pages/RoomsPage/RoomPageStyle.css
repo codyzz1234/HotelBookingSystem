@@ -9,11 +9,11 @@
     grid-template-columns:repeat(2,1fr);
     grid-template-rows: 
                         1fr
-                        .8fr
+                        2fr
                         8fr;
     grid-template-areas: 
                         "nav nav"
-                        "button button"
+                        "form form"
                         "content content";
     justify-content:space-between;
     align-items:flex-start;
@@ -36,8 +36,22 @@
     height: 100%;
     justify-content: start;
 }
-.RoomPage .room-button{
-    width: 15%;
-    margin-left: 3%;
-    font-size:1.25rem;
+
+.RoomPage .form-container{
+    grid-area:form;
+    display:flex;
+    width: 100%;
+    height:100%;
+    border: solid 5px black;
+    justify-content: start;
+    align-items: end;
 }
+.RoomPage .Room-Form{
+    margin-left: 1%;
+}
+
+.RoomPage .AddRoom{
+    width:100%;
+}
+
+

@@ -75,7 +75,7 @@ const updateReservation = async(currentStateValue) =>{
           setLoadTable(true);
           hideModal();
         },2000);
-        setMessage({type:"true",displayMessage:"Updated Book successfully"})
+        setMessage({type:"true",displayMessage:"Updated Room successfully"})
       }
       catch(error){
         setMessage({type:"none",displayMessage:error.message})
