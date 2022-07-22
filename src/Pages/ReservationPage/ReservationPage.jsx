@@ -76,7 +76,6 @@ const ReservationPage = ()=>{
     const data = await reserveService.getAllReserve();
     console.log(data.docs);
     setReserves(data.docs.map((doc) => ({ id: doc.id, ...doc.data() })))
- 
   }
 
 
@@ -85,7 +84,6 @@ const ReservationPage = ()=>{
 
   const EditReservation = (params)=>{
     let reserveInfo = params.row;
-    console.log("Firebase Key values" + JSON.stringify(reserveInfo,undefined,2)); // Print Current row being ;clicked
     setId(reserveInfo.id);
     setFirstName(reserveInfo.FirstName)
     setLastName(reserveInfo.LastName)

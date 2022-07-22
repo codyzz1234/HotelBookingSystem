@@ -40,7 +40,6 @@ const addReserve = async(e) =>{
     CheckOutDate:currentStateValue.checkOut,
     RoomNumber:currentStateValue.roomNum
   }
-
   try{
     console.log("hello")
     await reserveService.addReserve(newReserve);
