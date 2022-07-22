@@ -14,6 +14,7 @@ import { async } from '@firebase/util'
 import { doc } from 'firebase/firestore'
 import AddReservationModal from './Modal/AddReserveModal'
 import EditReservationModal from './Modal/EditReservationModal'
+import DeleteReserveModal from "./Modal/DeleteReserveModal"
 
 
 const ReservationPage = ()=>{
@@ -126,7 +127,11 @@ const ReservationPage = ()=>{
             }}>
             Edit
           </button>
-          <button type="button" className="btn btn-danger">
+          <button type="button" className="btn btn-danger"
+           onClick={(e) =>{
+              DeleteReservation(params);
+           }}
+          >
             Delete
           </button>
           </>
@@ -148,8 +153,10 @@ const ReservationPage = ()=>{
   }
 
   const DeleteReservation = (params) =>{
-    console.log(obj);
-    let obj = params.row;
+    let data = params.row
+    let id = data.id;
+    setStateValue.setId(id);
+    setShowDeleteModal(true);
   }
   
 
@@ -217,6 +224,15 @@ const ReservationPage = ()=>{
           setLoadTable = {setLoadTable}
         >
         </EditReservationModal>
+
+        <DeleteReserveModal
+        show = {showDeleteModal}
+        closeModal = {setShowDeleteModal}
+        currentStateValue = {currentStateValue}
+        setLoadTable = {setLoadTable}
+        >
+        
+        </DeleteReserveModal>
 
       </div>
       

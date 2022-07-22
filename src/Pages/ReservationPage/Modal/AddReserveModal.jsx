@@ -42,7 +42,7 @@ const addReserve = async(e) =>{
   }
 
   try{
-
+    console.log("hello")
     await reserveService.addReserve(newReserve);
     setMessage({type:"true",displayMessage:"Reservation Added Successfully"})
     const timer = setTimeout(() =>
@@ -78,7 +78,6 @@ async function loadRoomsForComboBox(){
   try{
     const data = await roomService.getAllRooms();
     setRooms(data.docs.map((doc) => ({ id: doc.id, ...doc.data() })))
-    setMessage({type:"true",displayMessage:""})
   }
   catch(error){
     setMessage({type:"false",displayMessage:"Failed To Load Rooms Combobox"})
@@ -98,6 +97,8 @@ async function loadRoomsForComboBox(){
                   <Alert variant = "danger">
                     {message.displayMessage}
                   </Alert>
+                :message.type === "none"?
+                 ""
                 :""
           }
           

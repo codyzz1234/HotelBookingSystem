@@ -47,7 +47,6 @@ async function loadRoomsForComboBox(){
   try{
     const data = await roomService.getAllRooms();
     setRooms(data.docs.map((doc) => ({ id: doc.id, ...doc.data() })))
-    setMessage({type:"true",displayMessage:""})
   }
   catch(error){
     setMessage({type:"false",displayMessage:"Failed To Load Rooms Combobox"})
@@ -60,7 +59,7 @@ const updateReservation = async(currentStateValue) =>{
   try{
     const docSnap = await reserveService.getReserve(id);
     if(docSnap.exists()){
-      console.log("Document data:", docSnap.data());
+      // console.log("Document data:", docSnap.data());
       const updatedReservation = {
         FirstName:currentStateValue.firstName,
         LastName:currentStateValue.lastName,
@@ -87,7 +86,7 @@ const updateReservation = async(currentStateValue) =>{
     }
   }
   catch(error){
-    console.log("Error" + error.message);
+    // console.log("Error" + error.message);
   }
   
   const updatedReservation = {
@@ -102,7 +101,7 @@ const updateReservation = async(currentStateValue) =>{
 
   return (
       <>
-        <pre>{JSON.stringify(rooms,undefined,2)}</pre>
+        {/* <pre>{JSON.stringify(rooms,undefined,2)}</pre> */}
         <Modal show={props.show} onHide = {hideModal}>
           <Modal.Header closeButton>
           {
