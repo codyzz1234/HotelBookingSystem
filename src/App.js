@@ -6,6 +6,7 @@ import{BrowserRouter, Route,Routes} from "react-router-dom";
 import ProtectedRoutes from './Components/ProtectedRoutes';
 import HomePage from './Pages/HomePage/HomePage';
 import ReservationPage from './Pages/ReservationPage/ReservationPage';
+import RoomsPage from './Pages/RoomsPage/RoomsPage';
 
 function App() {
   return(
@@ -20,6 +21,7 @@ function App() {
               <Route path = "/HomePage">
                   <Route element = {<HomePage/>} exact path = "/HomePage"></Route>
                   <Route element = {<ReservationPage/>} exact path = "/HomePage/Reservation"></Route>
+                  <Route element = {<RoomsPage/>} exact path = "/HomePage/RoomsPage"></Route> 
               </Route>
           </Route>
         </Routes>

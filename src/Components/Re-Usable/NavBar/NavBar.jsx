@@ -29,8 +29,11 @@ const NavBar = () => {
   }
 
   const goToHomePage = ()=>{
-
     navigate('/HomePage');
+  }
+
+  const goToRoomsPage = ()=>{
+    navigate("/HomePage/RoomsPage")
   }
 
 
@@ -62,6 +65,18 @@ const NavBar = () => {
             Reserve A Room
           </a>
         </li>
+        <li className="nav-item Room">
+          <a href = "#0" className="NavLink"
+                onClick={(e)=>{
+                  e.preventDefault();
+                  goToRoomsPage();
+                }}>
+  
+            <i className="fa-solid fa-solid fa-bed fa-2xl" />
+            Add Room
+          </a>
+        </li>
+
         <li className="nav-item LogOut">
           <a href = "#0" className="NavLink"
                 onClick={(e)=>{
@@ -72,6 +87,8 @@ const NavBar = () => {
             Log Out
           </a>
         </li>
+
+        
       </ul>
     </div>
   </div>

@@ -12,6 +12,9 @@ import NavBar from '../../Components/Re-Usable/NavBar/NavBar'
 //*Images*/
 import ReserveImage from "../../assets/Images/HomePageImages//ReserveImage.jpg"
 import CheckOutImage from "../../assets/Images/HomePageImages//CheckOutIcon.jpg"
+import RoomImage from "../../assets//Images//HomePageImages//RoomImage.jpg"
+
+
 import ProtectedRoutes from '../../Components/ProtectedRoutes'
 import ReservationPage from '../ReservationPage/ReservationPage'
 const HomePage = () => {
@@ -50,12 +53,14 @@ const HomePage = () => {
               Reserve A Room
             </button>
           </div>
+
           <div className="flex-item">
-            <img src={CheckOutImage} alt="" className="Flex-Item-Images" />
+            <img src={RoomImage} alt="" className="Flex-Item-Images" />
             <button type="button" className="btn btn-primary BootStrapButton">
-              Check Out
+              Add A Room
             </button>
           </div>
+
           <div className="flex-item">
             Item 3;
           </div>
